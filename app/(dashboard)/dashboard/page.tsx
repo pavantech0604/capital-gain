@@ -268,15 +268,13 @@ export default function DashboardPage() {
                 <span>Standard Disclosures</span>
                 <ExternalLink className="w-4 h-4 text-on-surface-variant group-hover:text-primary transition-colors" />
               </Link>
-              <a
-                href="https://scores.sebi.gov.in"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/support"
                 className="flex justify-between items-center p-3.5 rounded-xl bg-surface-container border border-outline-variant/30 hover:border-primary/50 transition-all group text-body-sm"
               >
-                <span>SEBI SCORES Portal</span>
+                <span>Customer Support Desk</span>
                 <ExternalLink className="w-4 h-4 text-on-surface-variant group-hover:text-primary transition-colors" />
-              </a>
+              </Link>
             </div>
           </GlassCard>
 

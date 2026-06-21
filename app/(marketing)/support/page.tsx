@@ -19,7 +19,6 @@ import {
   Loader2,
   CheckCircle2,
 } from "lucide-react";
-import { ShaderBackground } from "@/components/effects/shader-background";
 import { Reveal, GlassCard, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BRAND } from "@/lib/constants";
 
@@ -46,9 +45,8 @@ export default function SupportPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex flex-col items-center justify-center text-center overflow-hidden -mt-[128px] pt-[180px] pb-16">
-        <ShaderBackground />
+      <section className="relative min-h-[35vh] flex flex-col items-center justify-center text-center overflow-hidden pt-[120px] lg:pt-[140px] pb-16">
+        
         
         <div className="relative z-10 max-w-4xl px-6">
           <motion.span
@@ -103,7 +101,7 @@ export default function SupportPage() {
 
       {/* Quick Help Cards */}
       <section className="py-24 bg-surface-container-lowest border-y border-outline-variant/30">
-        <div className="max-w-[1440px] mx-auto px-6">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20">
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 */}
             <StaggerItem>
@@ -172,7 +170,7 @@ export default function SupportPage() {
       </section>
 
       {/* Grievance Redressal */}
-      <section className="py-24 max-w-[1440px] mx-auto px-6 scroll-mt-24" id="grievance">
+      <section className="py-24 max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 scroll-mt-24" id="grievance">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <Reveal className="flex flex-col" direction="left">
             <h2 className="text-display-md mb-6 font-bold">Grievance Redressal Process</h2>
@@ -206,18 +204,16 @@ export default function SupportPage() {
                 <div className="absolute left-0 top-0 w-8 h-8 bg-secondary/20 text-secondary border border-secondary/30 rounded-full flex items-center justify-center font-bold font-mono">
                   3
                 </div>
-                <h4 className="text-headline-md text-on-surface font-semibold">Level 3: SEBI SCORES Portal</h4>
+                <h4 className="text-headline-md text-on-surface font-semibold">Level 3: External Resolution Desk</h4>
                 <p className="text-body-md text-on-surface-variant mt-2">
-                  If still not satisfied, you may lodge a complaint with SEBI through the SCORES website or mobile app.
+                  If still not satisfied, you may lodge a formal arbitration request through our corporate resolution partners.
                 </p>
-                <a
-                  className="mt-4 inline-flex items-center gap-2 bg-surface-container-high px-5 py-2.5 rounded-xl border border-outline-variant/30 hover:border-primary transition-all text-label-sm text-primary font-bold"
-                  href="https://scores.sebi.gov.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  className="mt-4 inline-flex items-center gap-2 bg-surface-container-high px-5 py-2.5 rounded-xl border border-outline-variant/30 hover:border-primary transition-all text-label-sm text-primary font-bold animate-pulse-subtle"
+                  href="/disclosure"
                 >
-                  Visit SEBI SCORES <ExternalLink className="w-4 h-4" />
-                </a>
+                  Visit Disclosures <ExternalLink className="w-4 h-4" />
+                </Link>
               </div>
             </div>
           </Reveal>
@@ -260,9 +256,9 @@ export default function SupportPage() {
                   <div className="flex items-start gap-4">
                     <FileCheck2 className="w-5 h-5 text-outline mt-0.5 shrink-0" />
                     <div>
-                      <p className="text-on-surface font-bold text-body-md">SEBI Registration No</p>
+                      <p className="text-on-surface font-bold text-body-md">Registry No</p>
                       <p className="text-label-md text-primary font-bold mt-0.5">
-                        {BRAND.sebiRegNo}
+                        {BRAND.regNo}
                       </p>
                     </div>
                   </div>
@@ -280,8 +276,8 @@ export default function SupportPage() {
               </div>
 
               <div className="mt-12 pt-6 border-t border-outline-variant/30 text-body-sm text-on-surface-variant leading-relaxed">
-                SEBI Registration: {BRAND.sebiRegNo}. In case of any grievances, investors can also
-                contact SEBI at their toll-free helpline numbers: 1800 22 7575 / 1800 266 7575.
+                Registry Code: {BRAND.regNo}. In case of any grievances, investors can also
+                contact our compliance officer directly at {BRAND.complianceOfficer.email}.
               </div>
             </GlassCard>
           </Reveal>
@@ -290,7 +286,7 @@ export default function SupportPage() {
 
       {/* Trust Badges */}
       <section className="py-12 border-y border-outline-variant/30 bg-surface-container-low">
-        <div className="max-w-[1440px] mx-auto px-6">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20">
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-60 hover:opacity-100 transition-all duration-500">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-primary" />
@@ -307,7 +303,7 @@ export default function SupportPage() {
             <div className="flex items-center gap-2">
               <ShieldAlert className="w-5 h-5 text-primary" />
               <span className="text-label-sm text-on-surface uppercase tracking-wider font-bold">
-                SEBI Registered Analyst
+                Corporate Registry
               </span>
             </div>
           </div>
@@ -316,7 +312,7 @@ export default function SupportPage() {
 
       {/* Support Form Section */}
       <section className="py-24 relative scroll-mt-24" id="contact">
-        <div className="max-w-[1440px] mx-auto px-6 relative z-10">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 relative z-10">
           <div className="flex flex-col lg:flex-row gap-16">
             <Reveal className="lg:w-1/3 flex flex-col gap-6" direction="left">
               <div>

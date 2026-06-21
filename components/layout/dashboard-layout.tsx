@@ -41,8 +41,8 @@ export default function DashboardLayout({
       </header>
 
       {/* Main content area — pushed right on lg+ for sidebar, pushed down on mobile for header */}
-      <main className="lg:ml-[280px] min-h-screen bg-canvas pt-16 lg:pt-0">
-        <div className="p-4 sm:p-6 lg:p-8">{children}</div>
+      <main className="lg:ml-[280px] min-h-screen bg-canvas pt-16 lg:pt-0 flex flex-col justify-between">
+        <div className="p-4 sm:p-6 lg:p-8 max-w-[1440px] w-full mx-auto flex-1">{children}</div>
         <DashboardFooter />
       </main>
     </>

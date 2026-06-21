@@ -7,8 +7,8 @@ export function DashboardFooter() {
       <div className="max-w-[1440px] mx-auto px-6 py-16 flex flex-col gap-4 text-center">
         <p className="text-headline-md text-primary mb-2">{BRAND.fullName}</p>
         <p className="text-label-sm text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
-          © {new Date().getFullYear()} {BRAND.fullName}. SEBI Reg No:{" "}
-          {BRAND.sebiRegNo}. {DISCLAIMER}
+          © {new Date().getFullYear()} {BRAND.fullName}. Research ID:{" "}
+          {BRAND.regNo}. {DISCLAIMER}
         </p>
         <div className="flex flex-wrap justify-center gap-4 mt-6">
           {[...FOOTER_LINKS.quickLinks, ...FOOTER_LINKS.compliance].map(

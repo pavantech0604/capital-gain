@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
 });
@@ -17,24 +23,24 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Capital Gain Research | SEBI Registered Research Analyst",
+    default: "Capital Gain Research | Professional Equity Analysis",
     template: "%s | Capital Gain Research",
   },
   description:
-    "SEBI-registered insights for the serious investor. We provide data-driven market analysis to help you navigate Indian equities with confidence. Reg No: INH000017259",
+    "Professional equity insights for the serious investor. We provide data-driven market analysis to help you navigate Indian equities with confidence.",
   keywords: [
-    "SEBI registered research analyst",
+    "equity research analyst",
     "Indian equity research",
     "stock recommendations",
     "market analysis",
     "investment research",
     "Capital Gain",
   ],
-  authors: [{ name: "Capital Gain Research Analyst" }],
+  authors: [{ name: "Capital Gain Research" }],
   openGraph: {
-    title: "Capital Gain Research | SEBI Registered Research Analyst",
+    title: "Capital Gain Research | Professional Equity Analysis",
     description:
-      "Professional research for the modern investor. SEBI Reg No: INH000017259",
+      "Professional research for the modern investor. High-conviction swing and growth ideas.",
     type: "website",
     locale: "en_IN",
   },
@@ -48,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} dark`}
+      className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable} dark`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >

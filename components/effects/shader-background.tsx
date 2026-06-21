@@ -40,20 +40,48 @@ uniform float u_time;
 uniform vec2 u_resolution;
 varying vec2 v_texCoord;
 
+float noise(vec2 p) {
+    return sin(p.x * 1.5 + u_time * 0.15) * cos(p.y * 1.5 + u_time * 0.12) +
+           0.5 * sin(p.x * 3.0 - u_time * 0.22) * cos(p.y * 4.0 + u_time * 0.18);
+}
+
 void main() {
     vec2 uv = v_texCoord;
-    vec3 color1 = vec3(0.05, 0.07, 0.1);
-    vec3 color2 = vec3(0.06, 0.72, 0.5);
-    
-    float noise = sin(uv.x * 2.0 + u_time * 0.2) * cos(uv.y * 2.0 + u_time * 0.3);
-    float glow = 0.05 / length(uv - 0.5 + 0.2 * vec2(sin(u_time * 0.1), cos(u_time * 0.15)));
-    
-    vec3 finalColor = mix(color1, color2 * 0.15, noise + glow);
-    
-    float grid = (sin(uv.x * 100.0) * 0.5 + 0.5) * (sin(uv.y * 100.0) * 0.5 + 0.5);
-    finalColor += grid * 0.02;
+    vec2 aspectUv = (uv - 0.5) * vec2(u_resolution.x / u_resolution.y, 1.0);
 
-    gl_FragColor = vec4(finalColor, 1.0);
+    // Luxury Dark Navy Background (#0b1020)
+    vec3 baseColor = vec3(0.043, 0.063, 0.125); 
+    
+    // Luxury Teal Brand Color (#0ea5a4)
+    vec3 tealGlow = vec3(0.055, 0.647, 0.643);
+    
+    // Luxury Gold Accent (#d4a647)
+    vec3 goldGlow = vec3(0.831, 0.651, 0.278);
+
+    // Noise fields for color distribution
+    float n1 = noise(aspectUv * 1.8 + vec2(sin(u_time * 0.05), cos(u_time * 0.08)) * 0.5);
+    float n2 = noise(aspectUv * 2.5 - vec2(cos(u_time * 0.07), sin(u_time * 0.04)) * 0.4);
+
+    // Create glowing blobs
+    float blob1 = smoothstep(0.1, 0.9, 0.45 / (length(aspectUv - vec2(sin(u_time * 0.12) * 0.6, cos(u_time * 0.09) * 0.4)) + 0.5));
+    float blob2 = smoothstep(0.1, 0.9, 0.30 / (length(aspectUv - vec2(cos(u_time * 0.08) * 0.7, sin(u_time * 0.15) * 0.5)) + 0.6));
+
+    // Combine colors based on blobs and noise
+    vec3 mixedColor = mix(baseColor, tealGlow * 0.18, clamp(n1 + blob1, 0.0, 1.0));
+    mixedColor = mix(mixedColor, goldGlow * 0.06, clamp(n2 * blob2, 0.0, 1.0));
+
+    // Refined dashboard dot grid overlay (36px cell spacing)
+    vec2 gridSpace = v_texCoord * vec2(u_resolution.x / 36.0, u_resolution.y / 36.0);
+    vec2 gridFract = fract(gridSpace);
+    float dots = smoothstep(0.92, 0.96, 1.0 - length(gridFract - 0.5));
+    
+    // Fade dots near edges (vignette effect)
+    float vignette = smoothstep(0.0, 0.5, uv.x) * smoothstep(1.0, 0.5, uv.x) *
+                     smoothstep(0.0, 0.5, uv.y) * smoothstep(1.0, 0.5, uv.y);
+                     
+    mixedColor += dots * 0.035 * vignette;
+
+    gl_FragColor = vec4(mixedColor, 1.0);
 }`;
 
     const createShader = (type: number, src: string) => {
@@ -106,7 +134,7 @@ void main() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full opacity-40 mix-blend-screen pointer-events-none"
+      className="absolute inset-0 w-full h-full opacity-60 mix-blend-screen pointer-events-none"
       style={{ display: "block" }}
     />
   );

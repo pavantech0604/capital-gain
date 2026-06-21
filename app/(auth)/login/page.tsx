@@ -44,7 +44,7 @@ export default function LoginPage() {
               {BRAND.name}
             </h1>
             <p className="text-label-sm text-on-surface-variant uppercase tracking-widest">
-              SEBI REGISTERED: {BRAND.sebiRegNo}
+              RESEARCH ID: {BRAND.regNo}
             </p>
           </div>
         </div>
@@ -140,7 +140,7 @@ export default function LoginPage() {
             </div>
             <h1 className="text-headline-lg font-bold text-primary">{BRAND.name}</h1>
             <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">
-              SEBI REGISTERED: {BRAND.sebiRegNo}
+              RESEARCH ID: {BRAND.regNo}
             </p>
           </div>
 
@@ -247,7 +247,7 @@ export default function LoginPage() {
             <div className="space-y-1">
               <p className="text-label-md text-tertiary font-bold">Mandatory KYC Disclosure</p>
               <p className="text-body-sm text-on-surface-variant">
-                In compliance with SEBI regulations, all research advisory services require a completed KYC profile and Risk Assessment before investment access is granted.
+                In compliance with standard financial advisory guidelines, all research advisory services require a completed KYC profile and Risk Assessment before investment access is granted.
               </p>
             </div>
           </div>
@@ -276,13 +276,13 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* SEBI Floating Badge (Bottom Right) */}
+        {/* Research Floating Badge (Bottom Right) */}
         <div className="absolute bottom-6 right-6 p-2 bg-surface-container-high rounded border border-white/5 hidden md:flex items-center gap-2">
           <div className="w-6 h-6 bg-tertiary rounded-full flex items-center justify-center">
             <ShieldCheck className="w-4 h-4 text-on-tertiary" />
           </div>
           <span className="text-label-sm text-on-surface-variant uppercase">
-            Certified Research Analyst
+            Verified Research Desk
           </span>
         </div>
       </section>

@@ -13,7 +13,6 @@ import {
   Calendar,
   Layers,
 } from "lucide-react";
-import { ShaderBackground } from "@/components/effects/shader-background";
 import { Reveal, GlassCard, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BRAND } from "@/lib/constants";
 
@@ -21,8 +20,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-[60vh] flex flex-col items-center justify-center text-center overflow-hidden -mt-[128px] pt-[180px] pb-16">
-        <ShaderBackground />
+      <section className="relative min-h-[40vh] flex flex-col items-center justify-center text-center overflow-hidden pt-[120px] lg:pt-[140px] pb-16">
         
         <div className="relative z-10 max-w-4xl px-6">
           <motion.span
@@ -57,12 +55,12 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ FOUNDER SECTION (Editorial Layout) ═══ */}
-      <section className="py-24 bg-surface-container-lowest border-y border-outline-variant/30">
-        <div className="max-w-[1440px] mx-auto px-6">
+      <section className="py-24 bg-surface-container-lowest border-y border-outline-variant/30 overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 xl:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Image Container */}
             <Reveal className="col-span-12 lg:col-span-5 relative group" direction="left">
-              <div className="absolute -inset-4 bg-primary/5 rounded-2xl transition-all group-hover:bg-primary/10" />
+              <div className="absolute inset-0 lg:-inset-4 bg-primary/5 rounded-2xl transition-all group-hover:bg-primary/10" />
               <div className="relative z-10 aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-2xl border border-white/10">
                 <Image
                   src="/founder.png"
@@ -73,13 +71,13 @@ export default function AboutPage() {
                   priority
                 />
               </div>
-              <div className="absolute bottom-0 right-0 sm:-bottom-6 sm:-right-6 glass-card p-6 z-20 max-w-[260px] border border-white/10">
+              <div className="absolute bottom-4 right-4 lg:-bottom-6 lg:-right-6 glass-card p-6 z-20 max-w-[260px] border border-white/10">
                 <div className="flex items-center gap-2 mb-2 text-tertiary">
                   <ShieldCheck className="w-5 h-5" />
-                  <span className="text-label-md uppercase font-bold">SEBI Registered</span>
+                  <span className="text-label-md uppercase font-bold">Corporate Desk</span>
                 </div>
                 <p className="text-label-sm text-on-surface-variant">
-                  Registration Number: {BRAND.sebiRegNo}
+                  Registry ID: {BRAND.regNo}
                 </p>
               </div>
             </Reveal>
@@ -123,7 +121,7 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ TIMELINE SECTION ═══ */}
-      <section className="py-24 max-w-[1440px] mx-auto px-6">
+      <section className="py-24 max-w-[1200px] mx-auto px-6 md:px-12 xl:px-20 overflow-hidden">
         <Reveal>
           <div className="text-center mb-16">
             <h2 className="text-display-md mb-4">Our Journey</h2>
@@ -141,8 +139,8 @@ export default function AboutPage() {
             {[
               {
                 date: "Oct 24, 2019",
-                title: "SEBI Registration",
-                desc: "Formally registered as an Investment Research Analyst, marking our commitment to regulatory excellence and transparency.",
+                title: "Advisory Inception",
+                desc: "Formally established our investment research desk, marking our commitment to research excellence and transparency.",
                 color: "bg-primary",
                 icon: Calendar,
                 side: "left",
@@ -198,8 +196,8 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ VALUES SECTION ═══ */}
-      <section className="py-24 bg-surface-container-low border-t border-outline-variant/30">
-        <div className="max-w-[1440px] mx-auto px-6">
+      <section className="py-24 bg-surface-container-low border-t border-outline-variant/30 overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 xl:px-20">
           <Reveal>
             <div className="max-w-2xl mb-16">
               <h2 className="text-display-md mb-4">Our Foundations</h2>
@@ -227,7 +225,7 @@ export default function AboutPage() {
                 icon: Shield,
                 color: "text-tertiary border-tertiary/20 bg-tertiary/10",
                 title: "Compliance",
-                desc: "Rigorous adherence to SEBI regulations and fiduciary standards to ensure the safety and security of your financial interests.",
+                desc: "Rigorous adherence to institutional compliance and fiduciary standards to ensure the safety and security of your financial interests.",
               },
             ].map((value) => (
               <StaggerItem key={value.title}>
@@ -250,7 +248,6 @@ export default function AboutPage() {
 
       {/* ═══ CTA SECTION ═══ */}
       <section className="py-24 relative overflow-hidden bg-canvas">
-        <ShaderBackground />
         
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <GlassCard className="p-12 md:p-16 !rounded-3xl border-primary/20">

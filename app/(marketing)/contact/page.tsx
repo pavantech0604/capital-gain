@@ -12,7 +12,6 @@ import {
   Globe,
   Loader2,
 } from "lucide-react";
-import { ShaderBackground } from "@/components/effects/shader-background";
 import { Reveal, GlassCard, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BRAND } from "@/lib/constants";
 
@@ -39,16 +38,15 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[45vh] flex flex-col items-center justify-center text-center overflow-hidden -mt-[128px] pt-[180px] pb-16">
-        <ShaderBackground />
+      <section className="relative min-h-[35vh] flex flex-col items-center justify-center text-center overflow-hidden pt-[120px] lg:pt-[140px] pb-16">
+        
         <div className="relative z-10 max-w-4xl px-6">
           <Reveal>
             <h1 className="text-display-lg text-on-surface mb-4 leading-tight">
               Direct Line to <span className="text-primary text-glow">Insight.</span>
             </h1>
             <p className="text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-              Connect with our SEBI Registered Research Analysts for institutional-grade market
+              Connect with our premium research desk for institutional-grade market
               intelligence and bespoke portfolio strategies.
             </p>
           </Reveal>
@@ -56,7 +54,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Cards Section */}
-      <section className="max-w-[1440px] mx-auto px-6 -mt-16 relative z-20">
+      <section className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 -mt-16 relative z-20">
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Office Address */}
           <StaggerItem>
@@ -108,7 +106,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form and Map Section */}
-      <section className="max-w-[1440px] mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <section className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* Contact Form */}
         <Reveal className="flex flex-col gap-8" direction="left">
           <div>
@@ -231,15 +229,15 @@ export default function ContactPage() {
 
       {/* Compliance Banner */}
       <section className="bg-surface-container-low py-8 border-y border-outline-variant/30">
-        <div className="max-w-[1440px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-surface-container-high flex items-center justify-center rounded-xl border border-outline-variant/30 text-tertiary">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-label-md text-on-surface font-bold">SEBI Registered Analyst</p>
+              <p className="text-label-md text-on-surface font-bold">Corporate Registry</p>
               <p className="text-label-sm text-on-surface-variant">
-                Registration No: {BRAND.sebiRegNo}
+                Registry ID: {BRAND.regNo}
               </p>
             </div>
           </div>

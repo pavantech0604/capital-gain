@@ -51,7 +51,7 @@ export default function ProfilePage() {
         <div>
           <h2 className="text-display-md text-on-surface font-bold">Profile &amp; Settings</h2>
           <p className="text-body-sm text-on-surface-variant mt-1">
-            Manage your personal data, KYC documentation, and SEBI compliance statuses.
+            Manage your personal data, KYC documentation, and advisory compliance statuses.
           </p>
         </div>
         <div className="flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary">

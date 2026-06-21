@@ -22,7 +22,7 @@ export function ComingSoon({
   backLabel = "Go Back",
 }: ComingSoonProps) {
   return (
-    <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 py-16">
+    <div className="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-16 pt-[120px] lg:pt-[140px]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

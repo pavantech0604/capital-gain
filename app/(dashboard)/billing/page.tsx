@@ -119,7 +119,7 @@ export default function BillingPage() {
             </div>
             <h1 className="text-display-md text-on-surface font-bold">Official Payment Channel</h1>
             <p className="text-body-lg text-on-surface-variant mt-1">
-              Transfer funds securely via NEFT/RTGS or UPI to our SEBI Registered Research Account.
+              Transfer funds securely via NEFT/RTGS or UPI to our Official Research Account.
             </p>
           </div>
 
