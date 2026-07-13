@@ -35,7 +35,7 @@ export default function ForgotPasswordPage() {
               {BRAND.name}
             </h1>
             <p className="text-label-sm text-on-surface-variant uppercase tracking-widest">
-              SEBI REGISTERED: {BRAND.sebiRegNo}
+              RESEARCH ID: {BRAND.regNo}
             </p>
           </div>
         </div>

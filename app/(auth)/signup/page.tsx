@@ -52,7 +52,7 @@ export default function SignupPage() {
               {BRAND.name}
             </h1>
             <p className="text-label-sm text-on-surface-variant uppercase tracking-widest">
-              SEBI REGISTERED: {BRAND.sebiRegNo}
+              RESEARCH ID: {BRAND.regNo}
             </p>
           </div>
         </div>
@@ -73,7 +73,7 @@ export default function SignupPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-body-lg text-on-surface-variant mb-12"
           >
-            Create an account to complete your KYC onboarding and access SEBI-compliant Research Analyst recommendations.
+            Create an account to complete your KYC onboarding and access premium Research Analyst recommendations.
           </motion.p>
 
           {/* Interactive Steps Graphics */}
@@ -106,7 +106,7 @@ export default function SignupPage() {
         <div className="relative z-10 flex gap-8 items-center opacity-60">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-primary" />
-            <span className="text-label-md">SEBI-Compliant Workflow</span>
+            <span className="text-label-md">Compliant Data Workflow</span>
           </div>
           <div className="flex items-center gap-2">
             <FileKey2 className="w-5 h-5 text-primary" />
@@ -125,7 +125,7 @@ export default function SignupPage() {
             </div>
             <h1 className="text-headline-lg font-bold text-primary">{BRAND.name}</h1>
             <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">
-              SEBI REGISTERED: {BRAND.sebiRegNo}
+              RESEARCH ID: {BRAND.regNo}
             </p>
           </div>
 
@@ -223,7 +223,7 @@ export default function SignupPage() {
                 className="mt-1 w-4.5 h-4.5 accent-primary border border-outline-variant/30 bg-surface-container-low rounded cursor-pointer"
               />
               <label htmlFor="consent-check" className="text-body-sm text-on-surface-variant cursor-pointer select-none">
-                I agree to the Terms of Service & Privacy Policy, and authorize {BRAND.fullName} to perform KYC suitability evaluations as required by SEBI regulations.
+                I agree to the Terms of Service & Privacy Policy, and authorize {BRAND.fullName} to perform KYC suitability evaluations as required by risk guidelines.
               </label>
             </div>
 
@@ -271,13 +271,13 @@ export default function SignupPage() {
           </div>
         </div>
 
-        {/* SEBI Floating Badge (Bottom Right) */}
+        {/* Research Floating Badge (Bottom Right) */}
         <div className="absolute bottom-6 right-6 p-2 bg-surface-container-high rounded border border-white/5 hidden md:flex items-center gap-2">
           <div className="w-6 h-6 bg-tertiary rounded-full flex items-center justify-center">
             <ShieldCheck className="w-4 h-4 text-on-tertiary" />
           </div>
           <span className="text-label-sm text-on-surface-variant uppercase">
-            Certified Research Analyst
+            Verified Research Desk
           </span>
         </div>
       </section>

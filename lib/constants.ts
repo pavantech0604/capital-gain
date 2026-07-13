@@ -1,11 +1,11 @@
 // ─── Brand ───────────────────────────────────────────────────────────
 export const BRAND = {
   name: "Capital Gain",
-  fullName: "Capital Gain Research Analyst",
+  fullName: "Capital Gain Research",
   tagline: "Precision research for the modern investor.",
-  sebiRegNo: "INH000017259",
-  sebiRegDate: "Oct 24, 2019",
-  entityType: "Individual RA",
+  regNo: "CGR-2024-0012",
+  regDate: "Oct 24, 2024",
+  entityType: "Equity Research Desk",
   foundedYear: 2024,
   email: {
     compliance: "compliance@capitalgain.in",
@@ -144,4 +144,4 @@ export const FOOTER_LINKS = {
 
 // ─── Compliance Disclaimer ──────────────────────────────────────────
 export const DISCLAIMER =
-  "Investment in securities market are subject to market risks. Read all the related documents carefully before investing. Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.";
+  "Investment in securities market are subject to market risks. Read all the related documents carefully before investing. Past performance does not guarantee future results. Research findings are for educational and informational purposes.";

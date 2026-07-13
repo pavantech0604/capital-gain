@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -13,30 +21,36 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500"],
+  preload: false,
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Capital Gain Research | SEBI Registered Research Analyst",
+    default: "Capital Gain Research | Professional Equity Analysis",
     template: "%s | Capital Gain Research",
   },
   description:
-    "SEBI-registered insights for the serious investor. We provide data-driven market analysis to help you navigate Indian equities with confidence. Reg No: INH000017259",
+    "Professional equity insights for the serious investor. We provide data-driven market analysis to help you navigate Indian equities with confidence.",
   keywords: [
-    "SEBI registered research analyst",
+    "equity research analyst",
     "Indian equity research",
     "stock recommendations",
     "market analysis",
     "investment research",
     "Capital Gain",
   ],
-  authors: [{ name: "Capital Gain Research Analyst" }],
+  authors: [{ name: "Capital Gain Research" }],
   openGraph: {
-    title: "Capital Gain Research | SEBI Registered Research Analyst",
+    title: "Capital Gain Research | Professional Equity Analysis",
     description:
-      "Professional research for the modern investor. SEBI Reg No: INH000017259",
+      "Professional research for the modern investor. High-conviction swing and growth ideas.",
     type: "website",
     locale: "en_IN",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
@@ -48,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} dark`}
+      className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable} dark`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
@@ -58,6 +72,19 @@ export default function RootLayout({
           fontFamily: "var(--font-inter), var(--font-sans)",
         }}
       >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                  for(let registration of registrations) {
+                    registration.unregister();
+                  }
+                });
+              }
+            `,
+          }}
+        />
         {children}
       </body>
     </html>

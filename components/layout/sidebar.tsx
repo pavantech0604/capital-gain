@@ -67,7 +67,7 @@ export function Sidebar({ mobileOpen, onClose }: SidebarProps) {
             <div className="mt-2 flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-primary" />
               <span className="text-label-sm text-on-surface-variant">
-                SEBI Reg: {BRAND.sebiRegNo}
+                Verified Research Desk
               </span>
             </div>
           </Link>

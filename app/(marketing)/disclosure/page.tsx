@@ -15,7 +15,6 @@ import {
   TrendingUp,
   Bookmark,
 } from "lucide-react";
-import { ShaderBackground } from "@/components/effects/shader-background";
 import { Reveal, GlassCard, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BRAND, DISCLAIMER } from "@/lib/constants";
 
@@ -53,16 +52,17 @@ export default function DisclosurePage() {
   ];
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
+    <div className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 w-full relative z-10 pt-[96px] lg:pt-[100px]">
+      <div className="flex flex-col lg:flex-row min-h-[calc(100vh-100px)] gap-10">
       {/* Sidebar Navigation (Sticky) */}
-      <aside className="w-full lg:w-[280px] shrink-0 bg-surface-container-low border-b lg:border-b-0 lg:border-r border-outline-variant/30 py-8 px-6 lg:sticky lg:top-[128px] lg:h-[calc(100vh-128px)] flex flex-col justify-between z-30">
+      <aside className="w-full lg:w-[280px] shrink-0 bg-surface-container-low border-b lg:border-b-0 lg:border-r border-outline-variant/30 py-8 px-6 lg:sticky lg:top-[100px] lg:max-h-[calc(100vh-100px)] overflow-y-auto flex flex-col justify-between z-30">
         <div>
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-2 text-tertiary">
               <ShieldCheck className="w-5 h-5" />
-              <h3 className="text-headline-md font-bold text-on-surface">SEBI Registered</h3>
+              <h3 className="text-headline-md font-bold text-on-surface">Corporate Registry</h3>
             </div>
-            <p className="text-label-sm text-on-surface-variant">Reg: {BRAND.sebiRegNo}</p>
+            <p className="text-label-sm text-on-surface-variant">Registry Code: {BRAND.regNo}</p>
           </div>
           <nav className="space-y-1">
             {navLinks.map((link) => (
@@ -97,7 +97,7 @@ export default function DisclosurePage() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 py-12 px-6 lg:px-12 max-w-[1160px] mx-auto overflow-hidden">
+      <main className="flex-1 py-12 lg:py-16 overflow-hidden">
         {/* Hero Header */}
         <header className="mb-16 relative">
           <Reveal>
@@ -107,7 +107,7 @@ export default function DisclosurePage() {
             <p className="text-body-lg text-on-surface-variant max-w-2xl">
               {BRAND.fullName} maintains the highest standards of regulatory compliance and
               institutional integrity. Here you will find our comprehensive disclosure profile as
-              mandated by SEBI.
+              part of our code of ethics.
             </p>
           </Reveal>
         </header>
@@ -135,15 +135,15 @@ export default function DisclosurePage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div className="p-4 bg-surface-container-high rounded-xl border border-white/5">
-                    <p className="text-label-sm text-on-surface-variant mb-1">SEBI Reg No.</p>
+                    <p className="text-label-sm text-on-surface-variant mb-1">Registry No.</p>
                     <p className="text-headline-md text-on-surface font-mono font-bold">
-                      {BRAND.sebiRegNo}
+                      {BRAND.regNo}
                     </p>
                   </div>
                   <div className="p-4 bg-surface-container-high rounded-xl border border-white/5">
                     <p className="text-label-sm text-on-surface-variant mb-1">Reg. Date</p>
                     <p className="text-headline-md text-on-surface font-bold">
-                      {BRAND.sebiRegDate}
+                      {BRAND.regDate}
                     </p>
                   </div>
                   <div className="p-4 bg-surface-container-high rounded-xl border border-white/5">
@@ -157,7 +157,7 @@ export default function DisclosurePage() {
                 <div className="mt-8 flex items-center gap-3 text-on-surface-variant">
                   <Bookmark className="w-5 h-5 text-primary shrink-0" />
                   <p className="text-body-sm italic">
-                    Status verified by SEBI SCORES as of latest audit cycle.
+                    Status verified as of latest internal audit cycle.
                   </p>
                 </div>
               </GlassCard>
@@ -224,7 +224,7 @@ export default function DisclosurePage() {
                   <span className="text-headline-md font-bold">Payment Safety</span>
                 </div>
                 <p className="text-body-sm text-on-tertiary-container leading-relaxed">
-                  Always ensure payments are made directly to the SEBI registered entity account.
+                  Always ensure payments are made directly to the official corporate entity account.
                   Never share OTPs or passwords. We do not provide profit sharing services.
                 </p>
               </div>
@@ -348,13 +348,14 @@ export default function DisclosurePage() {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10 flex flex-col justify-end p-8 md:p-12">
               <h4 className="text-display-md text-white mb-2">Commitment to Excellence</h4>
               <p className="text-body-lg text-on-surface-variant max-w-xl">
-                Our research process is independent, unbiased, and strictly governed by SEBI Research
-                Analyst regulations.
+                Our research process is independent, unbiased, and strictly governed by our internal research
+              regulations.
               </p>
             </div>
           </section>
         </div>
       </main>
+      </div>
     </div>
   );
 }

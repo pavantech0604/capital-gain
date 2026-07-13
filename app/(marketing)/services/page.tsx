@@ -38,18 +38,19 @@ export default function ServicesPage() {
     },
     {
       q: "Do you offer 1-on-1 portfolio advice?",
-      a: "Personalized advice is exclusively available to HNI Alpha plan members under a specific advisory agreement, strictly following SEBI Research Analyst regulations.",
+      a: "Personalized advice is exclusively available to HNI Alpha plan members under a specific advisory agreement, strictly following our internal research regulations.",
     },
   ];
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
-      {/* Side Navigation Bar (Hidden on small screens) */}
-      <aside className="w-full lg:w-[280px] shrink-0 bg-surface-container-low border-b lg:border-b-0 lg:border-r border-outline-variant/30 py-8 px-6 lg:sticky lg:top-[128px] lg:h-[calc(100vh-128px)] flex flex-col justify-between z-30">
+    <div className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 w-full relative z-10 pt-[96px] lg:pt-[100px]">
+      <div className="flex flex-col lg:flex-row min-h-[calc(100vh-100px)] gap-10">
+      {/* Sticky Navigation Sidebar */}
+      <aside className="w-full lg:w-[280px] shrink-0 bg-surface-container-low border-b lg:border-b-0 lg:border-r border-outline-variant/30 py-8 px-6 lg:sticky lg:top-[100px] lg:max-h-[calc(100vh-100px)] overflow-y-auto flex flex-col justify-between z-30">
         <div>
           <div className="mb-8">
-            <h3 className="text-headline-md font-bold text-on-surface">SEBI Registered</h3>
-            <p className="text-label-sm text-on-surface-variant">Reg: {BRAND.sebiRegNo}</p>
+            <h3 className="text-headline-md font-bold text-on-surface">Corporate Registry</h3>
+            <p className="text-label-sm text-on-surface-variant">Registry ID: {BRAND.regNo}</p>
           </div>
           <nav className="space-y-1">
             <Link
@@ -104,7 +105,7 @@ export default function ServicesPage() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 py-12 px-6 lg:px-12 max-w-[1160px] mx-auto overflow-hidden">
+      <main className="flex-1 py-12 lg:py-16 overflow-hidden">
         {/* Hero Section */}
         <section className="mb-16 text-center lg:text-left">
           <Reveal>
@@ -117,7 +118,7 @@ export default function ServicesPage() {
             </h1>
             <p className="text-body-lg text-on-surface-variant max-w-2xl">
               Precision insights designed for the Indian equity markets. Move from curiosity to
-              conviction with SEBI registered research analytics.
+              conviction with verified research analytics.
             </p>
           </Reveal>
         </section>
@@ -265,7 +266,7 @@ export default function ServicesPage() {
           <ShieldCheck className="w-16 h-16 text-primary mx-auto mb-4" />
           <h2 className="text-headline-lg font-bold mb-3">Strict Compliance &amp; Safe Payments</h2>
           <p className="text-body-md text-on-surface-variant mb-8 max-w-2xl mx-auto">
-            Investment in securities are subject to market risks. We only accept payments through official bank accounts listed on our registered SEBI portal. Never share your OTP or PIN.
+            Investment in securities are subject to market risks. We only accept payments through official corporate bank accounts listed on our portal. Never share your OTP or PIN.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60 hover:opacity-100 transition-all">
             <div className="flex items-center gap-2">
@@ -315,6 +316,7 @@ export default function ServicesPage() {
           </div>
         </section>
       </main>
+      </div>
     </div>
   );
 }

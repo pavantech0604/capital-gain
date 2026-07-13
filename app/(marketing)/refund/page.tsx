@@ -9,7 +9,7 @@ export default function RefundPage() {
   return (
     <ComingSoon
       title="Refund Policy"
-      description="Our refund and cancellation policy is being finalized. It will detail the process for subscription cancellations, refund eligibility criteria, and timelines as per SEBI guidelines."
+      description="Our refund and cancellation policy is being finalized. It will detail the process for subscription cancellations, refund eligibility criteria, and timelines as per corporate guidelines."
       backHref="/"
       backLabel="Back to Home"
     />

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
   Eye,
@@ -16,576 +17,991 @@ import {
   Rss,
   BookOpen,
   ClipboardCheck,
-  Smartphone,
   CheckCircle2,
   AlertTriangle,
   ArrowRight,
+  ArrowUpRight,
+  ChevronDown,
+  ChevronRight,
+  Activity,
+  Zap,
+  Lock,
+  Layers
 } from "lucide-react";
-import { ShaderBackground } from "@/components/effects/shader-background";
 import { Reveal, GlassCard, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BRAND, PLANS, DISCLAIMER } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+
+// Recent Research recommendations mock data
+const RECENT_SIGNALS = [
+  {
+    company: "Tata Motors Ltd.",
+    ticker: "TATAMOTORS",
+    type: "Swing Trade",
+    entry: 910,
+    target: 985,
+    stopLoss: 870,
+    status: "Target Met",
+    gain: "+8.2%",
+    color: "success"
+  },
+  {
+    company: "Infosys Ltd.",
+    ticker: "INFY",
+    type: "Sectoral Alpha",
+    entry: 1480,
+    target: 1620,
+    stopLoss: 1420,
+    status: "Target Met",
+    gain: "+9.5%",
+    color: "success"
+  },
+  {
+    company: "Reliance Industries",
+    ticker: "RELIANCE",
+    type: "Core Growth",
+    entry: 2420,
+    target: 2700,
+    stopLoss: 2310,
+    status: "Active",
+    gain: "+3.1%",
+    color: "primary"
+  }
+];
+
+// FAQS data
+const FAQS = [
+  {
+    q: "What is the core methodology of Capital Gain?",
+    a: "We employ quantitative and fundamental models to identify high-probability swing and growth setups in Indian equities. Our research process is fully system-driven to eliminate emotional bias."
+  },
+  {
+    q: "How are recommendations delivered?",
+    a: "All active stock recommendations and deep research reports are instantly pushed to your premium dashboard. You will also receive real-time notifications via email and priority SMS/WhatsApp alerts."
+  },
+  {
+    q: "Do you offer guaranteed returns or portfolio management?",
+    a: "No. We operate purely as a research publisher. We do not offer personalized investment advice, guaranteed returns, or portfolio fund management. All trades involve market risk and are executed at the investor's discretion."
+  },
+  {
+    q: "What is your refund policy?",
+    a: "We maintain a transparent refund policy. Please refer to our Refund Policy page. As research insights are delivered immediately, we recommend starting with shorter-duration trial plans."
+  }
+];
 
 export default function HomePage() {
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  const toggleFaq = (idx: number) => {
+    setActiveFaq(activeFaq === idx ? null : idx);
+  };
+
   return (
-    <>
-      {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden -mt-[128px] pt-[180px]">
-        <ShaderBackground />
+    <div className="relative min-h-screen bg-white overflow-hidden">
+      
+      {/* ═══ DECORATIVE BACKGROUNDS ═══ */}
+      <div className="blur-blob-gold top-[30%] -right-40" />
+      <div className="blur-blob-teal top-[60%] left-[-20%]" />
 
-        <div className="relative z-10 max-w-4xl px-6">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-block px-4 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-label-sm mb-6"
+      {/* ═══ HERO SECTION ═══ */}
+      <section className="relative z-10 pt-[90px] sm:pt-[100px] md:pt-[110px] lg:pt-[130px] pb-10 md:pb-16 px-4 sm:px-6 md:px-12 xl:px-20 max-w-[1440px] mx-auto flex flex-col items-center justify-center text-center overflow-hidden">
+        
+        {/* Animated Background Stock Chart Line */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden select-none pointer-events-none z-0 flex items-center justify-center">
+          <svg className="w-[120%] h-[70%] min-w-[1000px] text-primary" viewBox="0 0 1000 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="chartGlow" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.1" />
+                <stop offset="50%" stopColor="var(--accent)" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.1" />
+              </linearGradient>
+            </defs>
+            {/* Live Chart Line Path */}
+            <motion.path
+              d="M0,180 Q100,100 200,200 T400,120 T600,240 T800,90 T1000,180"
+              stroke="url(#chartGlow)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+            />
+            {/* Glowing nodes at major peaks */}
+            <circle cx="200" cy="200" r="3.5" fill="var(--primary)" className="animate-pulse" />
+            <circle cx="400" cy="120" r="3.5" fill="var(--accent)" className="animate-pulse" />
+            <circle cx="600" cy="240" r="3.5" fill="var(--primary)" className="animate-pulse" />
+            <circle cx="800" cy="90" r="3.5" fill="var(--accent)" className="animate-pulse" />
+          </svg>
+        </div>
+
+        {/* Subtle grid and candlestick overlays */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(31,31,27,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(31,31,27,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none opacity-30 z-0" />
+
+        {/* Left Margin Candlesticks */}
+        <div className="absolute left-10 top-1/4 h-64 w-12 hidden xl:flex flex-col gap-5 opacity-10 select-none pointer-events-none z-0">
+          <div className="w-[1.5px] h-16 bg-success rounded-full mx-auto relative">
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3.5 h-8 bg-success/80 border border-success/45 rounded-sm" />
+          </div>
+          <div className="w-[1.5px] h-20 bg-danger rounded-full mx-auto relative">
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 w-3.5 h-12 bg-danger/80 border border-danger/45 rounded-sm" />
+          </div>
+        </div>
+        {/* Right Margin Candlesticks */}
+        <div className="absolute right-10 top-1/3 h-64 w-12 hidden xl:flex flex-col gap-5 opacity-10 select-none pointer-events-none z-0">
+          <div className="w-[1.5px] h-20 bg-success rounded-full mx-auto relative">
+            <div className="absolute top-5 left-1/2 -translate-x-1/2 w-3.5 h-10 bg-success/80 border border-success/45 rounded-sm" />
+          </div>
+          <div className="w-[1.5px] h-16 bg-danger rounded-full mx-auto relative">
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3.5 h-8 bg-danger/80 border border-danger/45 rounded-sm" />
+          </div>
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-4xl flex flex-col items-center w-full">
+          
+          {/* Live Indicator */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, filter: "blur(4px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-[9px] sm:text-[10px] font-mono text-primary font-bold mb-4"
           >
-            SEBI REGISTERED RESEARCH ANALYST
-          </motion.span>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            <span className="tracking-widest uppercase">Live Market Insights Active</span>
+          </motion.div>
 
+          {/* Trust Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(5px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-surface border border-warm-border rounded-full text-[9px] sm:text-label-sm text-trust-dark mb-5"
+          >
+            <Shield className="w-3.5 h-3.5 text-primary" />
+            <span className="font-semibold tracking-wider">PREMIUM EQUITY RESEARCH & STRATEGY</span>
+          </motion.div>
+
+          {/* Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="text-display-lg mb-4 leading-tight"
+            initial={{ opacity: 0, y: 30, filter: "blur(10px)", scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+            transition={{ delay: 0.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="text-display-lg mb-4 leading-[1.15] tracking-tight relative z-10 px-2"
           >
-            Professional Research.
-            <br />
-            <span className="text-primary text-glow">Informed Decisions.</span>
+            Institutional-Grade Research.<br className="hidden sm:inline" />
+            <span className="animated-gradient-text drop-shadow-[0_0_15px_rgba(14,165,164,0.2)]">
+              Wealth Strategy Perfected.
+            </span>
           </motion.h1>
 
+          {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.7 }}
-            className="text-body-lg text-on-surface-variant mb-16 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="text-body-lg text-text-muted mb-8 max-w-2xl font-medium relative z-10 px-4 sm:px-6"
           >
-            SEBI-registered insights for the serious investor. We provide
-            data-driven market analysis to help you navigate Indian equities
-            with confidence.
+            Empowering serious investors with data-driven equity models, clear entry-exit frameworks, and absolute transparency in compliance with institutional risk standards.
           </motion.p>
 
+          {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.7 }}
-            className="flex items-center justify-center gap-4 mb-16 flex-wrap"
+            initial={{ opacity: 0, y: 15, filter: "blur(6px)", scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+            transition={{ delay: 0.45, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-5 mb-10 md:mb-16 w-full max-w-[500px] sm:max-w-none justify-center relative z-10 px-4"
           >
             <Link
               href="/services"
-              className="bg-primary text-on-primary px-8 py-4 rounded-xl text-headline-md hover:shadow-[0_0_30px_rgba(78,222,163,0.3)] transition-all active:scale-95"
+              className="relative px-6 sm:px-10 py-3.5 sm:py-4.5 rounded-2xl text-headline-md w-full sm:w-auto text-center flex items-center justify-center gap-2 group transition-all duration-300 active:scale-95 bg-gradient-to-br from-primary via-[#D4721A] to-primary-dark text-white font-bold shadow-[0_10px_30px_rgba(230,126,34,0.15)] border border-primary/20 hover:shadow-[0_15px_40px_rgba(230,126,34,0.3)]"
             >
-              Start Free Trial
+              <span>Subscribe to Research</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
             </Link>
             <Link
               href="/about"
-              className="border border-secondary text-secondary px-8 py-4 rounded-xl text-headline-md hover:bg-secondary/10 transition-all active:scale-95"
+              className="btn-secondary px-6 sm:px-10 py-3.5 sm:py-4.5 rounded-2xl text-headline-md w-full sm:w-auto text-center flex items-center justify-center gap-2 transition-all duration-300 active:scale-95 bg-white border border-warm-border hover:bg-bg-soft"
             >
-              View Performance
+              <span>Performance Track</span>
             </Link>
           </motion.div>
+        </div>
 
-          {/* Dashboard Preview */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.9 }}
-            className="relative w-full max-w-[1440px] mx-auto mt-8 hidden md:block"
-          >
-            <div className="glass-card rounded-t-2xl overflow-hidden shadow-2xl">
-              {/* Browser Bar */}
-              <div className="bg-surface-container-high h-12 flex items-center px-6 gap-4 border-b border-white/10">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-error" />
-                  <div className="w-3 h-3 rounded-full bg-tertiary" />
-                  <div className="w-3 h-3 rounded-full bg-primary" />
+        {/* ═══ FLOATING STAT WIDGETS & PREVIEW ═══ */}
+        <div className="relative w-full max-w-[800px] xl:max-w-[1000px] 2xl:max-w-[1200px] mt-4 md:mt-8 lg:mt-12 mb-10 mx-auto flex flex-col items-center w-full px-4">
+          
+          {/* Responsive Widgets Container (Grid on mobile, Absolute on Desktop) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full max-w-[500px] mb-8 lg:mb-0 lg:max-w-none lg:block z-20">
+            {/* Floating Widget 1: Accuracy Rate */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:absolute lg:-left-16 xl:-left-32 2xl:-left-40 lg:top-[12%]"
+            >
+              <div className="w-full lg:w-56 p-4 bg-white/90 backdrop-blur-xl border border-warm-border rounded-2xl lg:animate-float-slow shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex flex-row items-center text-left gap-3.5 hover:border-success/30 transition-colors">
+                <div className="w-9 h-9 rounded-xl bg-success/10 border border-success/20 flex items-center justify-center text-success shrink-0">
+                  <TrendingUp className="w-4.5 h-4.5" />
                 </div>
-                <div className="bg-surface-container-low px-4 py-1 rounded flex-grow max-w-md mx-auto text-on-surface-variant text-label-sm text-left opacity-60">
-                  capitalgain.in/dashboard/analytics
+                <div>
+                  <p className="text-[10px] font-mono text-text-muted uppercase tracking-wider leading-none">Algorithmic Win Rate</p>
+                  <p className="text-[15px] font-heading font-black text-success mt-1">89.2%</p>
                 </div>
               </div>
+            </motion.div>
 
-              {/* Dashboard Mock Content */}
-              <div className="p-6 bg-surface-container-low grid grid-cols-12 gap-6 h-[400px]">
-                {/* Left KPIs */}
-                <div className="col-span-3 flex flex-col gap-4">
-                  <div className="h-24 bg-surface-container-high rounded-xl p-4 border border-white/5">
-                    <p className="text-label-sm text-on-surface-variant opacity-60">
-                      Portfolio Value
-                    </p>
-                    <p className="text-headline-md text-primary mt-1">
-                      ₹42,85,200
-                    </p>
-                  </div>
-                  <div className="h-24 bg-surface-container-high rounded-xl p-4 border border-white/5">
-                    <p className="text-label-sm text-on-surface-variant opacity-60">
-                      Today&apos;s P&amp;L
-                    </p>
-                    <p className="text-headline-md text-primary mt-1">
-                      +₹18,400{" "}
-                      <span className="text-label-sm">(1.2%)</span>
-                    </p>
-                  </div>
-                  <div className="flex-grow bg-surface-container-high rounded-xl border border-white/5" />
+            {/* Floating Widget 2: Active Traders */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:absolute lg:-right-16 xl:-right-32 2xl:-right-40 lg:top-[25%]"
+            >
+              <div className="w-full lg:w-56 p-4 bg-white/90 backdrop-blur-xl border border-warm-border rounded-2xl lg:animate-float-medium shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex flex-row items-center text-left gap-3.5 hover:border-primary/30 transition-colors">
+                <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                  <UserPlus className="w-4.5 h-4.5" />
                 </div>
+                <div>
+                  <p className="text-[10px] font-mono text-text-muted uppercase tracking-wider leading-none">Institutional Desk</p>
+                  <p className="text-[15px] font-heading font-black text-primary mt-1">15k+ AUM</p>
+                </div>
+              </div>
+            </motion.div>
 
-                {/* Center Chart */}
-                <div className="col-span-6 bg-surface-container-high rounded-xl border border-white/5 relative p-6">
-                  <div className="flex justify-between mb-6">
-                    <div className="w-32 h-6 bg-surface-variant rounded-full" />
-                    <div className="flex gap-2">
-                      <div className="w-8 h-8 rounded bg-surface-variant" />
-                      <div className="w-8 h-8 rounded bg-surface-variant" />
+            {/* Floating Widget 3: Live Signals */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.0, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="sm:col-span-2 lg:col-span-1 lg:absolute lg:-left-12 xl:-left-24 2xl:-left-36 lg:bottom-[20%]"
+            >
+              <div className="w-full lg:w-64 p-4 bg-white/90 backdrop-blur-xl border border-warm-border rounded-2xl lg:animate-float-medium shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex items-center gap-3.5 hover:border-primary/30 transition-colors">
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                </span>
+                <div className="flex-1 text-left">
+                  <p className="text-[10px] font-mono text-text-muted uppercase tracking-wider leading-none">Sys_Alert: Execution</p>
+                  <p className="text-body-sm font-semibold text-text mt-1 font-mono">TATAMOTORS <span className="text-primary font-bold">Target Met</span></p>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-primary shrink-0" />
+              </div>
+            </motion.div>
+
+            {/* Floating Widget 4: Compliance Integrity */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="hidden lg:block lg:absolute lg:-right-12 xl:-right-24 2xl:-right-36 lg:bottom-[15%]"
+            >
+              <div className="w-60 p-4 bg-white/90 backdrop-blur-xl border border-warm-border rounded-2xl lg:animate-float-slow shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex items-center gap-3.5 hover:border-accent/40 transition-colors group">
+                <div className="w-9 h-9 rounded-xl bg-accent-soft border border-accent/20 flex items-center justify-center text-accent shrink-0">
+                  <ShieldCheck className="w-4.5 h-4.5 group-hover:scale-110 transition-transform" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono text-text-muted uppercase tracking-wider leading-none">Compliance Audit</p>
+                  <p className="text-body-sm font-bold text-accent mt-1 text-glow-gold">100% Verified</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Dashboard Preview Box */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full relative z-10"
+          >
+            <div className="bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-warm-border">
+              {/* Browser Header Bar */}
+              <div className="bg-bg-soft h-12 flex items-center px-6 justify-between border-b border-warm-border">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-danger/60" />
+                  <div className="w-3 h-3 rounded-full bg-accent/60" />
+                  <div className="w-3 h-3 rounded-full bg-primary/60" />
+                </div>
+                <div className="bg-white px-6 py-1 rounded-md border border-warm-border max-w-sm w-full text-text-muted text-[10px] font-mono text-center flex items-center justify-center gap-2 shadow-sm">
+                  <Lock className="w-3 h-3 text-success animate-pulse" /> secure.capitalgain.in/terminal
+                </div>
+                <div className="w-10 h-2 bg-transparent" /> {/* Spacer */}
+              </div>
+
+              {/* Dashboard Content Mock */}
+              <div className="p-4 md:p-6 bg-bg-soft grid grid-cols-12 gap-4 min-h-[350px]">
+                
+                {/* Stats Sidebar */}
+                <div className="col-span-12 md:col-span-4 flex flex-col gap-4">
+                  <div className="bg-white rounded-xl p-4 border border-warm-border shadow-sm hover:border-primary/30 transition-colors group">
+                    <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest mb-2 flex items-center justify-between">
+                      Active Coverage <span className="text-success text-[9px] px-1.5 py-0.5 bg-success/10 rounded font-bold">LIVE</span>
+                    </p>
+                    <p className="text-display-sm font-mono font-bold text-text mt-1 group-hover:text-primary transition-colors">₹42,85,200</p>
+                    <div className="w-full h-1.5 bg-[#FAF8F4] mt-3 rounded-full overflow-hidden border border-warm-border/55">
+                      <div className="h-full bg-primary w-[78%]" />
                     </div>
                   </div>
-                  <div className="w-full h-48 border-b border-white/10 relative">
-                    <svg className="w-full h-full" viewBox="0 0 400 100">
-                      <path
-                        d="M0 80 Q 50 20, 100 60 T 200 10 T 300 50 T 400 30"
-                        fill="none"
-                        stroke="#4edea3"
-                        strokeWidth="3"
-                      />
-                    </svg>
-                  </div>
-                  <div className="mt-6 grid grid-cols-4 gap-4">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="h-4 bg-surface-variant rounded-full"
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right Research List */}
-                <div className="col-span-3 flex flex-col gap-4">
-                  <div className="h-full bg-surface-container-high rounded-xl border border-white/5 p-4">
-                    <p className="text-label-md text-on-surface mb-4 font-bold">
-                      Latest Research
+                  
+                  <div className="bg-white rounded-xl p-4 border border-warm-border shadow-sm hover:border-accent/30 transition-colors group">
+                    <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest mb-2 flex items-center justify-between">
+                      Alpha Generated <span className="text-accent text-[9px] font-bold">TODAY</span>
                     </p>
-                    <div className="space-y-2">
-                      {[1, 2, 3].map((i) => (
-                        <div
-                          key={i}
-                          className="h-10 bg-surface-variant/50 rounded p-1 flex items-center gap-2"
-                        >
-                          <div className="w-2 h-2 rounded-full bg-primary" />
-                          <div className="h-2 w-full bg-on-surface-variant/30 rounded-full" />
-                        </div>
+                    <p className="text-display-sm font-mono font-bold text-primary mt-1 transition-colors">+₹18,400</p>
+                    <div className="flex gap-1 mt-3">
+                      {[...Array(12)].map((_, i) => (
+                        <div key={i} className={`flex-1 h-6 rounded-sm ${i > 8 ? 'bg-danger/10 border border-danger/15' : 'bg-success/20 border border-success/15'}`} />
                       ))}
                     </div>
                   </div>
                 </div>
+
+                {/* Central Graph Box */}
+                <div className="col-span-12 md:col-span-8 bg-white rounded-xl border border-warm-border shadow-sm p-5 flex flex-col justify-between relative overflow-hidden">
+                  <div className="absolute inset-0 bg-institutional-grid-dense opacity-20 pointer-events-none" />
+                  
+                  <div className="flex justify-between items-center mb-6 relative z-10">
+                    <div className="flex items-center gap-2">
+                      <Activity className="w-4 h-4 text-primary animate-pulse" />
+                      <span className="text-[11px] font-mono font-bold text-text uppercase tracking-widest">Algorithmic Trend</span>
+                    </div>
+                    <div className="flex gap-1 bg-[#FAF8F4] p-1 rounded-md border border-warm-border">
+                      <span className="px-2.5 py-1 bg-primary/10 border border-primary/20 rounded text-[9px] font-mono text-primary font-bold">1M</span>
+                      <span className="px-2.5 py-1 rounded text-[9px] font-mono text-text-muted hover:text-text cursor-pointer transition-colors">3M</span>
+                      <span className="px-2.5 py-1 rounded text-[9px] font-mono text-text-muted hover:text-text cursor-pointer transition-colors">YTD</span>
+                    </div>
+                  </div>
+
+                  {/* High-Fidelity Chart Line Visualization */}
+                  <div className="w-full h-44 border-b border-warm-border/60 relative mt-2 z-10">
+                    {/* Horizontal Grid Lines */}
+                    <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-5">
+                      <div className="w-full h-[1px] bg-text" />
+                      <div className="w-full h-[1px] bg-text" />
+                      <div className="w-full h-[1px] bg-text" />
+                      <div className="w-full h-[1px] bg-text" />
+                    </div>
+
+                    <svg className="w-full h-full relative z-10" viewBox="0 0 800 150" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="premiumChart" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#E67E22" stopOpacity="0.25" />
+                          <stop offset="100%" stopColor="#E67E22" stopOpacity="0.0" />
+                        </linearGradient>
+                        <linearGradient id="premiumStroke" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0%" stopColor="#E67E22" />
+                          <stop offset="100%" stopColor="#C9A227" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M0 120 L40 110 L80 125 L120 90 L160 95 L200 60 L240 75 L280 40 L320 50 L360 20 L400 35 L440 10 L480 45 L520 25 L560 55 L600 30 L640 40 L680 15 L720 25 L760 5 L800 10"
+                        fill="none"
+                        stroke="url(#premiumStroke)"
+                        strokeWidth="2.5"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M0 120 L40 110 L80 125 L120 90 L160 95 L200 60 L240 75 L280 40 L320 50 L360 20 L400 35 L440 10 L480 45 L520 25 L560 55 L600 30 L640 40 L680 15 L720 25 L760 5 L800 10 L800 150 L0 150 Z"
+                        fill="url(#premiumChart)"
+                      />
+                    </svg>
+                  </div>
+                  
+                  {/* X-Axis Labels */}
+                  <div className="mt-3 flex justify-between text-[9px] font-mono text-text-muted relative z-10 px-2">
+                    <span>WK 01</span>
+                    <span>WK 02</span>
+                    <span>WK 03</span>
+                    <span>WK 04</span>
+                    <span className="text-primary font-bold">WK 05 (LIVE)</span>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ═══ TRUST METRICS ═══ */}
-      <section className="py-16 max-w-[1440px] mx-auto px-6">
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: Calendar,
-              color: "text-primary",
-              bgColor: "bg-primary/10",
-              title: "Registered since 2024",
-              desc: "Long-term market perspective and stability.",
-            },
-            {
-              icon: Eye,
-              color: "text-secondary",
-              bgColor: "bg-secondary/10",
-              title: "100% Transparent",
-              desc: "Open disclosure of tracking and performance metrics.",
-            },
-            {
-              icon: ShieldCheck,
-              color: "text-tertiary",
-              bgColor: "bg-tertiary/10",
-              title: "Official Payments",
-              desc: "Strict compliance with official banking channels only.",
-            },
-          ].map((item) => (
-            <StaggerItem key={item.title}>
-              <GlassCard className="p-8 flex items-center gap-6">
-                <div
-                  className={`w-16 h-16 rounded-full ${item.bgColor} flex items-center justify-center ${item.color} shrink-0`}
-                >
-                  <item.icon className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-headline-md text-on-surface">
+      {/* ═══ TRUST METRICS STRIP (Premium Data Panel) ═══ */}
+      <section className="py-12 md:py-16 max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 xl:px-20 relative z-10">
+        <Reveal>
+          <div className="glass-card-solid p-1 md:p-2 rounded-2xl md:rounded-[2rem] relative overflow-hidden">
+            <div className="absolute inset-0 bg-institutional-grid opacity-30 pointer-events-none" />
+            <div className="absolute top-0 right-1/3 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-warm-border relative z-10 bg-bg-soft rounded-xl md:rounded-[1.75rem] overflow-hidden">
+              {[
+                {
+                  icon: ShieldCheck,
+                  label: "REG: INH000017259",
+                  title: "SEBI Registered",
+                  desc: "Disciplined market analysis cycle over cycle, fully regulated.",
+                },
+                {
+                  icon: Activity,
+                  label: "AUDIT: 100% TRANSPARENT",
+                  title: "Verified Track Record",
+                  desc: "All historical recommendations stored with clear entry-exit targets.",
+                },
+                {
+                  icon: Lock,
+                  label: "SECURE: CORPORATE ONLY",
+                  title: "Official Bank Channels",
+                  desc: "Strictly compliant payments via corporate channels.",
+                },
+              ].map((item, i) => (
+                <div key={item.title} className="p-6 md:p-8 hover:bg-surface transition-colors group">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-10 h-10 rounded-lg bg-surface border border-warm-border flex items-center justify-center text-text-muted group-hover:text-primary group-hover:border-primary/30 transition-colors">
+                      <item.icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-mono text-text-muted tracking-widest">{item.label}</span>
+                  </div>
+                  <h3 className="text-headline-md font-bold text-text mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-body-sm text-on-surface-variant">
+                  <p className="text-body-sm text-text-muted/80 leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
-              </GlassCard>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </section>
 
-      {/* ═══ GETTING STARTED ═══ */}
-      <section className="py-16 bg-surface-container-low border-y border-outline-variant/30">
-        <div className="max-w-[1440px] mx-auto px-6 text-center mb-12">
+      {/* ═══ THREE-STEP GETTING STARTED (Timeline Style) ═══ */}
+      <section className="py-20 md:py-32 relative z-10 overflow-hidden bg-bg-soft">
+        <div className="absolute inset-0 bg-institutional-grid opacity-20 pointer-events-none" />
+        <div className="max-w-[1000px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+          
+          <div className="text-center mb-16 md:mb-24">
+            <Reveal>
+              <h2 className="text-display-md text-text mb-4">
+                Structured Capital Allocation
+              </h2>
+              <p className="text-body-md text-text-muted max-w-xl mx-auto">
+                Begin your journey toward disciplined capital growth through our rigorous three-phase onboarding protocol.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="relative">
+            {/* Vertical Connector Line (Desktop) */}
+            <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-primary/20 to-transparent -translate-x-1/2" />
+
+            <StaggerContainer className="flex flex-col gap-12 md:gap-24">
+              {[
+                {
+                  num: "PHASE 01",
+                  icon: UserPlus,
+                  title: "KYC & Registration",
+                  desc: "Complete your basic profile configuration and KYC checklist in compliance with SEBI risk management guidelines.",
+                  alignment: "left"
+                },
+                {
+                  num: "PHASE 02",
+                  icon: CreditCard,
+                  title: "Tier Allocation",
+                  desc: "Select an equity advisory framework that strictly aligns with your capital scale and long-term portfolio strategy.",
+                  alignment: "right"
+                },
+                {
+                  num: "PHASE 03",
+                  icon: BarChart3,
+                  title: "Terminal Access",
+                  desc: "Gain immediate execution-ready access to active swing recommendations, long-term portfolios, and detailed research notes.",
+                  alignment: "left"
+                },
+              ].map((step, i) => (
+                <StaggerItem key={step.num}>
+                  <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-16 ${step.alignment === "right" ? "md:flex-row-reverse" : ""}`}>
+                    
+                    {/* Mobile Only Icon Header (Hidden on Desktop) */}
+                    <div className="flex md:hidden w-12 h-12 bg-white border border-primary/30 rounded-full items-center justify-center shadow-md mb-2 shrink-0">
+                      <step.icon className="w-5 h-5 text-primary" />
+                    </div>
+
+                    {/* Content Box */}
+                    <div className={`w-full md:w-1/2 text-center ${step.alignment === "left" ? "md:text-right md:pr-12" : "md:text-left md:pl-12"}`}>
+                      <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 rounded-md text-[10px] font-mono text-primary mb-3 tracking-widest uppercase">
+                        {step.num}
+                      </div>
+                      <h3 className="text-headline-lg font-bold text-text mb-2.5">
+                        {step.title}
+                      </h3>
+                      <p className="text-body-sm text-text-muted/80 leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+
+                    {/* Central Node (Desktop) */}
+                    <div className="hidden md:flex relative w-16 h-16 shrink-0 items-center justify-center">
+                      <div className="absolute inset-0 bg-primary/5 rounded-full animate-pulse-subtle" />
+                      <div className="relative w-12 h-12 bg-white border border-primary/30 rounded-full flex items-center justify-center shadow-md z-10">
+                        <step.icon className="w-5 h-5 text-primary" />
+                      </div>
+                    </div>
+
+                    {/* Spacer for layout balance */}
+                    <div className="hidden md:block w-full md:w-1/2" />
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ WHY CHOOSE US (BENTO GRID STYLE) ═══ */}
+      <section className="py-20 md:py-32 bg-bg-soft relative z-10 overflow-hidden border-t border-warm-border">
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 xl:px-20 relative z-10">
+        <div className="text-center mb-12 md:mb-16 max-w-xl mx-auto">
           <Reveal>
-            <h2 className="text-display-md text-on-surface mb-4">
-              Getting Started
+            <h2 className="text-display-md text-text mb-4">
+              A Framework Built on <span className="text-primary font-bold">Integrity</span>
             </h2>
-            <p className="text-body-lg text-on-surface-variant">
-              Access premium research in three simple steps.
+            <p className="text-body-md text-text-muted">
+              We stand apart from speculative signal setups. We operate as a professional research publisher.
             </p>
           </Reveal>
         </div>
-        <StaggerContainer className="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-          {[
-            {
-              num: "01",
-              icon: UserPlus,
-              title: "Register Account",
-              desc: "Create your profile and verify your KYC details for regulatory compliance.",
-            },
-            {
-              num: "02",
-              icon: CreditCard,
-              title: "Subscribe",
-              desc: "Choose a plan that fits your investing style and complete official payment.",
-            },
-            {
-              num: "03",
-              icon: BarChart3,
-              title: "Access Research",
-              desc: "Gain instant access to our real-time dashboard and deep research reports.",
-            },
-          ].map((step, i) => (
-            <StaggerItem key={step.num}>
-              <div className="relative group">
-                <div className="text-[120px] font-bold text-primary/5 absolute -top-16 -left-4 pointer-events-none select-none">
-                  {step.num}
-                </div>
-                <GlassCard className="p-8 relative z-10 border-b-4 !border-b-primary transition-transform group-hover:-translate-y-2">
-                  <step.icon className="w-9 h-9 text-primary mb-4" />
-                  <h3 className="text-headline-md text-on-surface mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-body-md text-on-surface-variant">
-                    {step.desc}
-                  </p>
-                </GlassCard>
-                {i < 2 && (
-                  <div className="hidden md:block absolute top-1/2 -right-8 text-primary/30 z-20">
-                    <ArrowRight className="w-12 h-12" />
-                  </div>
-                )}
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
 
-      {/* ═══ WHY CHOOSE US ═══ */}
-      <section className="py-16 max-w-[1440px] mx-auto px-6 grid grid-cols-12 gap-12 items-center">
-        <Reveal className="col-span-12 lg:col-span-5">
-          <h2 className="text-display-md text-on-surface mb-6">
-            A Framework Built on{" "}
-            <span className="text-primary">Integrity</span>
-          </h2>
-          <p className="text-body-lg text-on-surface-variant mb-8">
-            We aren&apos;t just another signal provider. We are a research
-            institution dedicated to the highest standards of financial analysis
-            and investor protection.
-          </p>
-          <div className="space-y-6">
-            {[
-              {
-                icon: CheckCircle2,
-                title: "SEBI Registration",
-                desc: "Strict adherence to Regulation 20 of SEBI (Research Analysts) Regulations, 2014.",
-              },
-              {
-                icon: Shield,
-                title: "Zero Conflict",
-                desc: "We do not manage funds or trade against our recommendations. Your success is our only KPI.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="flex gap-4">
-                <item.icon className="w-5 h-5 text-primary mt-1 shrink-0" />
-                <div>
-                  <h4 className="text-headline-md text-on-surface">
-                    {item.title}
-                  </h4>
-                  <p className="text-body-sm text-on-surface-variant">
-                    {item.desc}
-                  </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-6">
+          {/* Grid Item 1: Standard Compliance Details */}
+          <Reveal className="col-span-1 md:col-span-2 lg:col-span-7">
+            <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card-gold relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl pointer-events-none" />
+              <div>
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-accent-soft border border-accent/20 flex items-center justify-center text-accent mb-4">
+                  <Shield className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
                 </div>
+                <h3 className="text-headline-lg font-bold text-text mb-2">Compliance & Risk Standards</h3>
+                <p className="text-body-sm text-text-muted max-w-lg leading-relaxed">
+                  Strict compliance with institutional risk standards. All research parameters are verified by qualified risk personnel before publishing.
+                </p>
               </div>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal
-          delay={0.2}
-          className="col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6"
-        >
-          {[
-            {
-              icon: HeadphonesIcon,
-              title: "24/7 Support",
-              desc: "Priority desk for all institutional and retail premium members.",
-              h: "h-auto min-h-[220px] md:h-64",
-            },
-            {
-              icon: Brain,
-              title: "Deep Expertise",
-              desc: "Analytic models backtested across multiple market cycles and regimes.",
-              h: "h-auto min-h-[220px] md:h-72 md:translate-y-6",
-            },
-            {
-              icon: Shield,
-              title: "Compliance First",
-              desc: "Full audit trail for every recommendation published.",
-              h: "h-auto min-h-[220px] md:h-64",
-            },
-            {
-              icon: TrendingUp,
-              title: "Actionable Alpha",
-              desc: "High-conviction ideas with clear entry, exit, and risk parameters.",
-              h: "h-auto min-h-[220px] md:h-72 md:translate-y-6",
-            },
-          ].map((card) => (
-            <GlassCard
-              key={card.title}
-              className={`p-6 ${card.h} flex flex-col justify-end group transition-colors hover:bg-surface-container-high`}
-            >
-              <card.icon className="w-6 h-6 text-primary mb-4 transition-transform group-hover:scale-110" />
-              <h3 className="text-headline-md mb-2">{card.title}</h3>
-              <p className="text-body-sm text-on-surface-variant">
-                {card.desc}
-              </p>
             </GlassCard>
-          ))}
-        </Reveal>
-      </section>
-
-      {/* ═══ PRODUCT SHOWCASE (BENTO) ═══ */}
-      <section className="py-16 bg-surface-container-low/50">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <Reveal>
-            <h2 className="text-display-md text-center mb-12">
-              The Analyst Dashboard
-            </h2>
           </Reveal>
 
-          <div className="grid grid-cols-12 gap-6 md:auto-rows-[280px]">
-            <Reveal className="col-span-12 md:col-span-8">
-              <GlassCard className="!rounded-3xl p-8 overflow-hidden relative group h-full">
-                <div className="relative z-10 flex flex-col h-full">
-                  <Rss className="w-9 h-9 text-primary mb-4" />
-                  <h3 className="text-headline-lg mb-4">
-                    Real-time Recommendation Feed
-                  </h3>
-                  <p className="text-body-lg text-on-surface-variant max-w-md">
-                    Institutional-grade alerts with precise price targets and
-                    stop-losses, pushed directly to your dashboard.
-                  </p>
+          {/* Grid Item 2: Zero Conflict */}
+          <Reveal delay={0.1} className="col-span-1 md:col-span-1 lg:col-span-5">
+            <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative overflow-hidden">
+              <div className="absolute top-1/2 right-[-20%] -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5 animate-float-slow">
+                  <Lock className="w-5 h-5" />
                 </div>
-                <div className="absolute bottom-0 right-0 w-1/2 h-full bg-surface-container-high rounded-tl-3xl border-l border-t border-white/10 p-4 translate-y-12 transition-transform group-hover:translate-y-4 hidden md:block">
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center bg-surface-container-low p-2 rounded-lg">
-                      <div className="w-12 h-4 bg-primary/20 rounded" />
-                      <div className="w-8 h-4 bg-primary rounded" />
-                    </div>
-                    <div className="flex justify-between items-center bg-surface-container-low p-2 rounded-lg opacity-50">
-                      <div className="w-16 h-4 bg-on-surface-variant/20 rounded" />
-                      <div className="w-8 h-4 bg-on-surface-variant/20 rounded" />
-                    </div>
-                  </div>
-                </div>
-              </GlassCard>
-            </Reveal>
-
-            <Reveal delay={0.15} className="col-span-12 md:col-span-4">
-              <GlassCard className="!rounded-3xl p-8 flex flex-col justify-center text-center h-full">
-                <div className="w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <BookOpen className="w-9 h-9 text-secondary" />
-                </div>
-                <h3 className="text-headline-lg mb-4">Report Library</h3>
-                <p className="text-body-md text-on-surface-variant">
-                  Over 500+ deep-dive sectoral and thematic research papers.
+                <h3 className="text-display-sm font-bold text-text mb-2">Zero Conflict Model</h3>
+                <p className="text-body-sm text-text-muted leading-relaxed">
+                  We do not execute client funds or trade against recommendations. We operate strictly as research publishers to align 100% with your success.
                 </p>
-              </GlassCard>
-            </Reveal>
+              </div>
+            </GlassCard>
+          </Reveal>
 
-            <Reveal delay={0.2} className="col-span-12 md:col-span-4">
-              <GlassCard className="!rounded-3xl p-8 flex flex-col items-center justify-center text-center h-full">
-                <div className="w-20 h-20 bg-tertiary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <ClipboardCheck className="w-9 h-9 text-tertiary" />
+          {/* Grid Item 3: Deep Expertise */}
+          <Reveal delay={0.15} className="col-span-1 md:col-span-1 lg:col-span-4">
+            <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative">
+              <div>
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
+                  <Brain className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-headline-lg mb-4">Compliance Center</h3>
-                <p className="text-body-md text-on-surface-variant">
-                  Automated record-keeping for your investment advisory history.
+                <h3 className="text-headline-lg font-bold text-text mb-2">Quantitative Models</h3>
+                <p className="text-body-sm text-text-muted leading-relaxed">
+                  Algorithms backtested across business cycles to generate high probability swing setups.
                 </p>
-              </GlassCard>
-            </Reveal>
+              </div>
+            </GlassCard>
+          </Reveal>
 
-            <Reveal delay={0.25} className="col-span-12 md:col-span-8">
-              <GlassCard className="!rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center h-full">
-                <div className="flex-1">
-                  <h3 className="text-headline-lg mb-4">
-                    Mobile-Ready Analysis
-                  </h3>
-                  <p className="text-body-md text-on-surface-variant">
-                    Access your research on the go. Optimized for desktop
-                    performance with lightning-fast mobile syncing.
-                  </p>
+          {/* Grid Item 4: Support Desk */}
+          <Reveal delay={0.2} className="col-span-1 md:col-span-2 lg:col-span-8">
+            <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
+              <div>
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
+                  <HeadphonesIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
                 </div>
-                <div className="w-full md:w-1/3 aspect-[9/16] bg-surface-container-high rounded-2xl border border-white/10 overflow-hidden relative max-h-[200px]">
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
-                  <div className="p-4 space-y-4">
-                    <div className="h-4 w-1/2 bg-on-surface-variant/20 rounded" />
-                    <div className="h-24 w-full bg-surface-container-low rounded-lg" />
-                    <div className="h-4 w-3/4 bg-on-surface-variant/20 rounded" />
-                  </div>
-                </div>
-              </GlassCard>
+                <h3 className="text-headline-lg font-bold text-text mb-2">Priority Support Desk</h3>
+                <p className="text-body-sm text-text-muted max-w-lg leading-relaxed">
+                  Dedicated desk access for Institutional and HNI members. Instant synchronization via client portals.
+                </p>
+              </div>
+            </GlassCard>
+          </Reveal>
+        </div>
+        </div>
+      </section>
+
+      {/* ═══ RECENT RECOMMENDATIONS / SIGNALS LOG ═══ */}
+      <section className="py-16 md:py-24 bg-bg-soft border-y border-warm-border relative z-10">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 xl:px-20">
+          <div className="text-center mb-12 md:mb-16 max-w-xl mx-auto">
+            <Reveal>
+              <h2 className="text-display-md text-text mb-4">
+                Recent Recommendations Log
+              </h2>
+              <p className="text-body-md text-text-muted">
+                Transparent verification of recent research setups published on our platform.
+              </p>
             </Reveal>
           </div>
+
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {RECENT_SIGNALS.map((sig) => (
+              <StaggerItem key={sig.ticker}>
+                <div className="p-[1px] rounded-3xl bg-gradient-to-b from-warm-border via-warm-border/40 to-transparent hover:from-primary/30 transition-all duration-300">
+                  <div className="bg-white p-5 sm:p-6.5 rounded-[23px] border border-warm-border/50 flex flex-col justify-between h-full shadow-sm">
+                    <div>
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <p className="text-[12px] font-mono text-text-muted">{sig.ticker}</p>
+                          <h4 className="text-headline-md font-bold text-text mt-0.5">{sig.company}</h4>
+                        </div>
+                        <span className={`px-3 py-1.5 rounded-full text-label-sm font-bold uppercase tracking-wider text-[10px] ${
+                          sig.status === "Target Met" 
+                            ? "bg-success/10 text-success border border-success/20" 
+                            : "bg-primary/10 text-primary border border-primary/20"
+                        }`}>
+                          {sig.status}
+                        </span>
+                      </div>
+                      
+                      <div className="grid grid-cols-3 gap-2 py-4 border-y border-border/20 my-4 text-center">
+                        <div>
+                          <p className="text-[10px] font-mono text-text-muted uppercase tracking-wider">Entry</p>
+                          <p className="text-body-sm font-bold text-text mt-1">₹{sig.entry}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-mono text-text-muted uppercase tracking-wider">Target</p>
+                          <p className="text-body-sm font-bold text-primary mt-1">₹{sig.target}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-mono text-text-muted uppercase tracking-wider">Stop Loss</p>
+                          <p className="text-body-sm font-bold text-danger mt-1">₹{sig.stopLoss}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-body-sm text-text-muted font-medium">{sig.type}</span>
+                      <span className="text-headline-md font-extrabold text-success">{sig.gain}</span>
+                    </div>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* ═══ THE ANALYST DASHBOARD SHOWCASE (BENTO) ═══ */}
+      <section className="py-16 md:py-24 max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 xl:px-20 relative z-10">
+        <div className="text-center mb-12 md:mb-16 max-w-xl mx-auto">
+          <Reveal>
+            <h2 className="text-display-md text-text mb-4">
+              The Analyst Dashboard
+            </h2>
+            <p className="text-body-md text-text-muted">
+              Discover the terminal interface loaded with real-time research pipelines.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 lg:auto-rows-[280px]">
+          {/* Main Feed Card */}
+          <Reveal className="col-span-1 md:col-span-12 lg:col-span-8">
+            <GlassCard className="p-6 md:p-8 overflow-hidden relative group h-full hover-glow-card">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent z-0 pointer-events-none" />
+              <div className="relative z-10 flex flex-col justify-between h-full">
+                <div>
+                  <div className="w-11 h-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5">
+                    <Rss className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-headline-lg font-bold text-text mb-3">
+                    Real-time Recommendation Feed
+                  </h3>
+                  <p className="text-body-sm text-text-muted max-w-md mb-6 lg:mb-0">
+                    Instant setups detailing precise price boundaries, active technical chart triggers, and direct analyst annotations.
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 text-primary font-heading font-semibold text-body-sm group-hover:translate-x-1.5 transition-transform cursor-pointer">
+                  <span>Explore dashboard features</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+
+              {/* Decorative Mock Overlay */}
+              <div className="absolute bottom-0 right-0 w-80 h-44 bg-bg-soft rounded-tl-3xl border-l border-t border-warm-border p-4.5 translate-y-12 transition-transform group-hover:translate-y-4 hidden md:block z-10">
+                <div className="space-y-3 text-body-sm">
+                  <div className="flex justify-between items-center bg-white border border-warm-border p-2.5 rounded-xl">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-success" />
+                      <span className="font-mono text-xs text-text">INFY Target Met</span>
+                    </div>
+                    <span className="text-xs font-bold text-success">+9.5%</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-white border border-warm-border p-2.5 rounded-xl opacity-50">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-primary" />
+                      <span className="font-mono text-xs text-text">RELIANCE Active</span>
+                    </div>
+                    <span className="text-xs font-bold text-primary">+3.1%</span>
+                  </div>
+                </div>
+              </div>
+            </GlassCard>
+          </Reveal>
+
+          {/* Research Library */}
+          <Reveal delay={0.1} className="col-span-1 md:col-span-6 lg:col-span-4">
+            <GlassCard className="p-6 md:p-8 flex flex-col justify-between h-full hover-glow-card-gold text-center items-center">
+              <div className="w-14 h-14 bg-accent-soft rounded-2xl border border-accent/20 flex items-center justify-center text-accent mx-auto">
+                <BookOpen className="w-6 h-6" />
+              </div>
+              <div className="my-6 lg:my-0">
+                <h3 className="text-headline-lg font-bold text-text mb-2">Report Library</h3>
+                <p className="text-body-sm text-text-muted">
+                  Over 500+ deep-dive sectoral analyses, thematic papers, and macro-equity models.
+                </p>
+              </div>
+              <span className="text-xs font-mono text-accent font-semibold tracking-wider uppercase">Institutional Access</span>
+            </GlassCard>
+          </Reveal>
+
+          {/* Compliance Card */}
+          <Reveal delay={0.15} className="col-span-1 md:col-span-6 lg:col-span-4">
+            <GlassCard className="p-6 md:p-8 flex flex-col justify-between h-full hover-glow-card text-center items-center">
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl border border-primary/20 flex items-center justify-center text-primary mx-auto">
+                <ClipboardCheck className="w-6 h-6" />
+              </div>
+              <div className="my-6 lg:my-0">
+                <h3 className="text-headline-lg font-bold text-text mb-2">Audit Compliance</h3>
+                <p className="text-body-sm text-text-muted">
+                  Verifiable advisory history records automatically archived to protect client integrity.
+                </p>
+              </div>
+              <span className="text-xs font-mono text-primary font-semibold tracking-wider uppercase">Audit Log Ready</span>
+            </GlassCard>
+          </Reveal>
+
+          {/* Mobile sync Card */}
+          <Reveal delay={0.2} className="col-span-1 md:col-span-12 lg:col-span-8">
+            <GlassCard className="p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-center h-full hover-glow-card relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent z-0 pointer-events-none" />
+              <div className="flex-1 z-10 flex flex-col justify-between h-full">
+                <div>
+                  <div className="w-11 h-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
+                    <Layers className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-headline-lg font-bold text-text mb-2">
+                    Multi-Device Sync
+                  </h3>
+                  <p className="text-body-sm text-text-muted mb-6 md:mb-0">
+                    Your research is synchronized instantly across desktop, browser, and mobile alerts. Zero latency alerts on the go.
+                  </p>
+                </div>
+                <p className="text-xs text-text-muted/60 font-mono hidden md:block">Optimized for Vercel edge deployment</p>
+              </div>
+              
+              {/* Decorative Mock phone */}
+              <div className="w-full md:w-48 aspect-[16/9] md:aspect-[9/15] bg-white rounded-2xl border border-warm-border overflow-hidden relative z-10 shrink-0 shadow-sm">
+                <div className="absolute top-0 inset-x-0 h-4 bg-bg-soft border-b border-warm-border/50 flex items-center justify-center">
+                  <div className="w-12 h-1.5 rounded-full bg-text-muted/20" />
+                </div>
+                <div className="p-4 pt-8 space-y-3">
+                  <div className="h-3 w-1/2 bg-primary/10 rounded-md" />
+                  <div className="h-10 w-full bg-[#FAF8F4] rounded-xl border border-warm-border p-2 text-[9px] font-mono text-text flex justify-between items-center shadow-sm">
+                    <span className="font-bold text-text-muted">ALERT: <span className="text-primary font-bold">INFY Buy</span></span>
+                    <ChevronRight className="w-2.5 h-2.5 text-primary animate-pulse" />
+                  </div>
+                  <div className="h-3 w-3/4 bg-text-muted/10 rounded-md" />
+                </div>
+              </div>
+            </GlassCard>
+          </Reveal>
         </div>
       </section>
 
       {/* ═══ SUBSCRIPTION PLANS ═══ */}
-      <section className="py-16 max-w-[1440px] mx-auto px-6">
-        <Reveal>
-          <div className="text-center mb-12">
-            <h2 className="text-display-md mb-4">Subscription Plans</h2>
-            <p className="text-body-lg text-on-surface-variant">
-              Choose the research access that matches your portfolio size.
-            </p>
-          </div>
-        </Reveal>
-
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {PLANS.map((plan) => (
-            <StaggerItem key={plan.id}>
-              <div
-                className={`p-8 rounded-3xl flex flex-col h-full ${
-                  plan.isPopular
-                    ? "bg-surface-container-high border-2 border-primary relative shadow-2xl scale-105 z-10"
-                    : "glass-card border border-white/5"
-                }`}
-              >
-                {plan.isPopular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-6 py-1 rounded-full text-label-sm font-bold">
-                    MOST POPULAR
-                  </div>
-                )}
-                <p
-                  className={`text-label-md mb-4 uppercase ${
-                    plan.isPopular
-                      ? "text-primary"
-                      : "text-on-surface-variant"
-                  }`}
-                >
-                  {plan.name}
-                </p>
-                <h3 className="text-display-md mb-8">
-                  {plan.price ? `₹${plan.price.toLocaleString("en-IN")}` : "Custom"}
-                  <span className="text-label-md text-on-surface-variant">
-                    /{plan.period}
-                  </span>
-                </h3>
-                <ul className="space-y-4 mb-12 flex-grow">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className={`flex items-center gap-2 ${
-                        plan.isPopular
-                          ? "text-on-surface"
-                          : "text-on-surface-variant"
-                      }`}
-                    >
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={plan.id === "hni-alpha" ? "/contact" : "/services"}
-                  className={`w-full py-4 rounded-xl text-headline-md text-center block transition-all ${
-                    plan.isPopular
-                      ? "bg-primary text-on-primary hover:brightness-110 shadow-lg shadow-primary/20"
-                      : "border border-outline hover:bg-white/5"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
-
-      {/* ═══ COMPLIANCE SPOTLIGHT ═══ */}
-      <section className="py-16 bg-surface-container-lowest">
-        <div className="max-w-[1440px] mx-auto px-6">
+      <section className="py-16 md:py-24 bg-bg-soft border-y border-warm-border relative z-10">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 xl:px-20">
           <Reveal>
-            <GlassCard className="p-12 !rounded-3xl border-l-4 !border-l-primary" hover={false}>
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-                <div className="max-w-2xl">
-                  <h2 className="text-headline-lg text-on-surface mb-4">
-                    Compliance Spotlight
-                  </h2>
-                  <p className="text-body-md text-on-surface-variant">
-                    {BRAND.fullName} is a SEBI Registered Research Analyst (Reg
-                    No: {BRAND.sebiRegNo}). We do not engage in any activities
-                    related to fund management or trading that could present a
-                    conflict of interest with our published research. All
-                    recommendations are based on fundamental and technical
-                    analysis performed by qualified professionals.
-                  </p>
-                </div>
-                <div className="text-left md:text-right shrink-0">
-                  <div className="bg-surface-container-high p-6 rounded-xl inline-block border border-outline-variant">
-                    <p className="text-label-sm text-primary mb-1">
-                      SEBI REGISTRATION NO.
-                    </p>
-                    <p className="text-headline-md text-on-surface">
-                      {BRAND.sebiRegNo}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </GlassCard>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ PAYMENT SAFETY ═══ */}
-      <section className="py-8">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <Reveal>
-            <div className="bg-error-container/10 border border-error/20 p-8 rounded-2xl flex items-start md:items-center gap-6 flex-col md:flex-row">
-              <AlertTriangle className="w-16 h-16 text-error shrink-0" />
-              <div>
-                <h3 className="text-headline-md text-error mb-2 uppercase tracking-wider">
-                  Payment Safety Warning
-                </h3>
-                <p className="text-body-md text-on-error-container">
-                  Always ensure payments are made only to the official company
-                  bank account of &quot;{BRAND.fullName}&quot;. We NEVER request
-                  payments via personal UPI IDs, Telegram bots, or third-party
-                  wallets. If you receive such a request, report it immediately
-                  to our compliance officer.
-                </p>
-              </div>
+            <div className="text-center mb-12 md:mb-16 max-w-xl mx-auto">
+              <h2 className="text-display-md text-text mb-4">Subscription Plans</h2>
+              <p className="text-body-md text-text-muted">
+                Choose the research framework matching your capital boundaries.
+              </p>
             </div>
           </Reveal>
+
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+            {PLANS.map((plan) => (
+              <StaggerItem key={plan.id} className={cn("h-full", plan.id === "hni-alpha" ? "md:col-span-2 lg:col-span-1" : "col-span-1")}>
+                <div
+                  className={cn(
+                    "p-5 sm:p-6 md:p-8 rounded-3xl flex flex-col justify-between h-full transition-all duration-300",
+                    plan.isPopular
+                      ? "bg-white border-2 border-primary/30 relative shadow-[0_20px_50px_rgba(230,126,34,0.06)] lg:scale-105 z-10"
+                      : "bg-white border border-warm-border shadow-sm hover-glow-card"
+                  )}
+                >
+                  {plan.isPopular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-primary-dark text-white px-6 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase shadow-[0_4px_15px_rgba(230,126,34,0.2)]">
+                      INSTITUTIONAL TIER
+                    </div>
+                  )}
+
+                  <div>
+                    <p
+                      className={cn(
+                        "text-label-md uppercase tracking-wider mb-4 font-bold",
+                        plan.isPopular ? "text-primary font-bold" : "text-text-muted"
+                      )}
+                    >
+                      {plan.name}
+                    </p>
+                    <h3 className="text-display-md text-text mb-8 flex items-baseline gap-1">
+                      {plan.price ? `₹${plan.price.toLocaleString("en-IN")}` : "Custom"}
+                      <span className="text-label-md text-text-muted font-normal lowercase">
+                        /{plan.period}
+                      </span>
+                    </h3>
+
+                    <ul className="space-y-4 mb-10">
+                      {plan.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-center gap-3 text-body-sm text-text"
+                        >
+                          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <Link
+                    href={plan.id === "hni-alpha" ? "/contact" : "/services"}
+                    className={cn(
+                      "w-full py-4 rounded-2xl text-headline-md text-center block transition-all duration-300 active:scale-95 font-bold font-heading",
+                      plan.isPopular
+                        ? "bg-gradient-to-br from-primary via-[#D4721A] to-primary-dark text-white shadow-[0_10px_30px_rgba(230,126,34,0.15)] hover:shadow-[0_15px_40px_rgba(230,126,34,0.3)]"
+                        : "btn-secondary bg-white hover:bg-bg-soft border border-warm-border"
+                    )}
+                  >
+                    {plan.cta}
+                  </Link>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
-    </>
+
+      {/* ═══ INTERACTIVE COLLAPSIBLE FAQ SECTION ═══ */}
+      <section className="py-16 md:py-24 max-w-[1000px] mx-auto px-4 sm:px-6 relative z-10">
+        <div className="text-center mb-16">
+          <Reveal>
+            <h2 className="text-display-md text-text mb-4">Frequently Asked Questions</h2>
+            <p className="text-body-md text-text-muted">
+              Get answers regarding our research methodology, compliance structures, and operations.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="space-y-4">
+          {FAQS.map((faq, idx) => {
+            const isOpen = activeFaq === idx;
+            return (
+              <Reveal key={idx} delay={idx * 0.05}>
+                <div className="bg-white rounded-2xl overflow-hidden border border-warm-border shadow-sm transition-all duration-350">
+                  <button
+                    onClick={() => toggleFaq(idx)}
+                    className="w-full p-6 flex justify-between items-center text-left hover:bg-bg-soft transition-colors"
+                  >
+                    <span className="text-headline-md font-bold text-text pr-4">{faq.q}</span>
+                    <ChevronDown className={cn("w-5 h-5 text-primary shrink-0 transition-transform duration-300", isOpen && "rotate-180")} />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="p-6 pt-0 border-t border-warm-border text-body-sm text-text-muted leading-relaxed">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ═══ COMPLIANCE SPOTLIGHT CARD ═══ */}
+      <section className="py-12 md:py-16 max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 xl:px-20 relative z-10">
+        <Reveal>
+          <GlassCard className="p-5 sm:p-8 md:p-12 !rounded-3xl border-l-4 !border-l-primary overflow-hidden relative" hover={false}>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent z-0 pointer-events-none" />
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8">
+              <div className="max-w-2xl">
+                <h2 className="text-headline-lg font-bold text-text mb-3">
+                  Research Accountability & Quality Spotlight
+                </h2>
+                <p className="text-body-sm text-text-muted leading-relaxed">
+                  {BRAND.fullName} operates as a publisher of financial analytics. We issue research publications and reports in strict compliance with internal audit parameters. We do not participate in portfolio execution or promise target guarantees.
+                </p>
+              </div>
+              <div className="shrink-0 w-full md:w-auto">
+                <div className="bg-bg-soft p-4 sm:p-5 md:p-6 rounded-2xl border border-warm-border/80 shadow-sm">
+                  <p className="text-[10px] font-mono text-primary font-bold uppercase tracking-wider mb-1 leading-none">
+                    VERIFIED AUDIT ID
+                  </p>
+                  <p className="text-headline-lg font-extrabold text-text font-mono mt-1">
+                    {BRAND.regNo}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </GlassCard>
+        </Reveal>
+      </section>
+
+      {/* ═══ PAYMENT SAFETY ALERT (High Security Notice) ═══ */}
+      <section className="pb-16 md:pb-24 max-w-[1200px] mx-auto px-4 sm:px-6 relative z-10">
+        <Reveal>
+          <div className="bg-red-50 border-l-4 border-l-danger border-y border-r border-red-200 p-5 sm:p-8 md:p-10 rounded-r-3xl rounded-bl-sm flex items-start gap-4 sm:gap-6 flex-col md:flex-row shadow-sm relative overflow-hidden">
+            <div className="scan-line" />
+            
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-100 border border-red-200 flex items-center justify-center text-danger shrink-0 z-10 shadow-sm">
+              <AlertTriangle className="w-5.5 h-5.5 sm:w-6 sm:h-6 animate-pulse" />
+            </div>
+            <div className="z-10 relative w-full">
+              <div className="flex justify-between items-start md:items-center mb-2.5">
+                <h3 className="text-headline-lg font-bold text-danger uppercase tracking-widest flex items-center gap-2">
+                  High Security Notice
+                </h3>
+                <span className="hidden md:block text-[9px] font-mono text-danger/60 border border-red-200 px-2 py-0.5 rounded bg-red-50">SECURITY NOTICE</span>
+              </div>
+              <p className="text-xs sm:text-sm text-text-muted leading-relaxed font-mono max-w-3xl">
+                Always ensure payments are made strictly to the official corporate banking channels of &quot;{BRAND.fullName}&quot; through our verified portal. We will <span className="text-text font-bold uppercase">never</span> request payments via personal UPI IDs, Telegram channels, or unregulated third-party crypto wallets.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+    </div>
   );
 }
