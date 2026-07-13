@@ -136,7 +136,7 @@ export function GlassCard({
     <motion.div
       whileHover={{
         y: -2,
-        borderColor: "rgba(78, 222, 163, 0.2)",
+        borderColor: "rgba(230, 126, 34, 0.2)",
         transition: { duration: 0.2 },
       }}
       className={cn("glass-card rounded-2xl hover-glow", className)}

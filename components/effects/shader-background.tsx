@@ -49,14 +49,14 @@ void main() {
     vec2 uv = v_texCoord;
     vec2 aspectUv = (uv - 0.5) * vec2(u_resolution.x / u_resolution.y, 1.0);
 
-    // Luxury Dark Navy Background (#0b1020)
-    vec3 baseColor = vec3(0.043, 0.063, 0.125); 
+    // Premium Warm Ivory Background (#FAF8F4)
+    vec3 baseColor = vec3(0.98, 0.97, 0.957); 
     
-    // Luxury Teal Brand Color (#0ea5a4)
-    vec3 tealGlow = vec3(0.055, 0.647, 0.643);
+    // Premium Orange Brand Color (#E67E22)
+    vec3 orangeGlow = vec3(0.90, 0.49, 0.135);
     
-    // Luxury Gold Accent (#d4a647)
-    vec3 goldGlow = vec3(0.831, 0.651, 0.278);
+    // Premium Gold Accent (#C9A227)
+    vec3 goldGlow = vec3(0.79, 0.64, 0.15);
 
     // Noise fields for color distribution
     float n1 = noise(aspectUv * 1.8 + vec2(sin(u_time * 0.05), cos(u_time * 0.08)) * 0.5);
@@ -66,9 +66,9 @@ void main() {
     float blob1 = smoothstep(0.1, 0.9, 0.45 / (length(aspectUv - vec2(sin(u_time * 0.12) * 0.6, cos(u_time * 0.09) * 0.4)) + 0.5));
     float blob2 = smoothstep(0.1, 0.9, 0.30 / (length(aspectUv - vec2(cos(u_time * 0.08) * 0.7, sin(u_time * 0.15) * 0.5)) + 0.6));
 
-    // Combine colors based on blobs and noise
-    vec3 mixedColor = mix(baseColor, tealGlow * 0.18, clamp(n1 + blob1, 0.0, 1.0));
-    mixedColor = mix(mixedColor, goldGlow * 0.06, clamp(n2 * blob2, 0.0, 1.0));
+    // Combine colors based on blobs and noise (subtle color washes on the light background)
+    vec3 mixedColor = mix(baseColor, orangeGlow, clamp(n1 + blob1, 0.0, 1.0) * 0.06);
+    mixedColor = mix(mixedColor, goldGlow, clamp(n2 * blob2, 0.0, 1.0) * 0.03);
 
     // Refined dashboard dot grid overlay (36px cell spacing)
     vec2 gridSpace = v_texCoord * vec2(u_resolution.x / 36.0, u_resolution.y / 36.0);
@@ -79,7 +79,7 @@ void main() {
     float vignette = smoothstep(0.0, 0.5, uv.x) * smoothstep(1.0, 0.5, uv.x) *
                      smoothstep(0.0, 0.5, uv.y) * smoothstep(1.0, 0.5, uv.y);
                      
-    mixedColor += dots * 0.035 * vignette;
+    mixedColor -= dots * 0.02 * vignette; // Darker dots on light background
 
     gl_FragColor = vec4(mixedColor, 1.0);
 }`;
@@ -134,7 +134,7 @@ void main() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full opacity-60 mix-blend-screen pointer-events-none"
+      className="absolute inset-0 w-full h-full opacity-40 pointer-events-none"
       style={{ display: "block" }}
     />
   );
