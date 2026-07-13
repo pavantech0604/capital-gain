@@ -55,24 +55,7 @@ export default function ContactPage() {
 
       {/* Contact Cards Section */}
       <section className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 -mt-16 relative z-20">
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Office Address */}
-          <StaggerItem>
-            <GlassCard className="p-8 flex flex-col items-center text-center rounded-2xl h-full border border-white/5">
-              <div className="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mb-6">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <h3 className="text-headline-md font-bold mb-3">Office Address</h3>
-              <p className="text-body-md text-on-surface-variant leading-relaxed">
-                {BRAND.address.line1}
-                <br />
-                {BRAND.address.line2}
-                <br />
-                {BRAND.address.line3}
-              </p>
-            </GlassCard>
-          </StaggerItem>
-
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {/* Direct Email */}
           <StaggerItem>
             <GlassCard className="p-8 flex flex-col items-center text-center rounded-2xl h-full border border-white/5">
@@ -106,10 +89,10 @@ export default function ContactPage() {
       </section>
 
       {/* Form and Map Section */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <section className="max-w-[768px] mx-auto px-6 md:px-12 xl:px-20 py-24 flex flex-col gap-16 items-center">
         {/* Contact Form */}
-        <Reveal className="flex flex-col gap-8" direction="left">
-          <div>
+        <Reveal className="flex flex-col gap-8 w-full" direction="up">
+          <div className="text-center">
             <h2 className="text-display-md mb-2">Send an Inquiry</h2>
             <p className="text-body-md text-on-surface-variant">
               Fill out the form below. Our analyst team typically responds within 4 business hours.
@@ -191,39 +174,6 @@ export default function ContactPage() {
               )}
             </button>
           </form>
-        </Reveal>
-
-        {/* Map Component */}
-        <Reveal
-          className="relative group rounded-2xl overflow-hidden glass-card border-none shadow-2xl min-h-[500px] aspect-[4/3] w-full"
-          direction="right"
-        >
-          <div className="absolute inset-0 grayscale opacity-60 transition-opacity group-hover:opacity-80">
-            <Image
-              src="/map.png"
-              alt="Map of Hyderabad Financial District"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
-          <div className="absolute bottom-6 left-6 right-6 p-6 glass-card rounded-xl border border-white/10 relative z-10">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-primary/20 text-primary flex items-center justify-center rounded-full shrink-0">
-                <Globe className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-label-md text-primary mb-1 uppercase tracking-wider font-bold">
-                  Our Location
-                </p>
-                <p className="text-body-md text-on-surface">Hyderabad Financial District, IN</p>
-                <p className="text-label-sm text-on-surface-variant mt-1">
-                  2 min walk from Westin Hotel
-                </p>
-              </div>
-            </div>
-          </div>
         </Reveal>
       </section>
 

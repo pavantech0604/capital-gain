@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BRAND, FOOTER_LINKS, DISCLAIMER } from "@/lib/constants";
-import { Globe, Mail, Phone, MapPin, Shield, CheckCircle } from "lucide-react";
+import { Shield, CheckCircle } from "lucide-react";
 
 export function Footer() {
   return (
@@ -126,40 +126,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Contact Info bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-6 md:py-8 border-y border-warm-border text-body-sm text-text-muted mb-8 md:mb-10">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white border border-warm-border flex items-center justify-center text-primary shrink-0 shadow-sm">
-              <Mail className="w-4 h-4" />
-            </div>
-            <div>
-              <p className="text-xs text-text-muted/50">Write to us</p>
-              <a href={`mailto:${BRAND.email.support}`} className="hover:text-primary transition-colors font-medium">
-                {BRAND.email.support}
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white border border-warm-border flex items-center justify-center text-primary shrink-0 shadow-sm">
-              <Phone className="w-4 h-4" />
-            </div>
-            <div>
-              <p className="text-xs text-text-muted/50">Call Support</p>
-              <a href={`tel:${BRAND.phone.tollFree}`} className="hover:text-primary transition-colors font-medium">
-                {BRAND.phone.tollFree} (Toll Free)
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white border border-warm-border flex items-center justify-center text-primary shrink-0 shadow-sm">
-              <MapPin className="w-4 h-4" />
-            </div>
-            <div>
-              <p className="text-xs text-text-muted/50">Registered Office</p>
-              <span className="font-medium text-text-muted">{BRAND.address.line1}, {BRAND.address.line2}</span>
-            </div>
-          </div>
-        </div>
+
 
         {/* Legal Disclaimer Box */}
         <div className="text-center md:text-left space-y-4">
