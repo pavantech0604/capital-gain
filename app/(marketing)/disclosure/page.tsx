@@ -52,10 +52,10 @@ export default function DisclosurePage() {
   ];
 
   return (
-    <div className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 w-full relative z-10 pt-[96px] lg:pt-[120px]">
-      <div className="flex flex-col lg:flex-row min-h-[calc(100vh-120px)] gap-10">
+    <div className="max-w-[1440px] mx-auto px-6 md:px-12 xl:px-20 w-full relative z-10 pt-[96px] lg:pt-[100px]">
+      <div className="flex flex-col lg:flex-row min-h-[calc(100vh-100px)] gap-10">
       {/* Sidebar Navigation (Sticky) */}
-      <aside className="w-full lg:w-[280px] shrink-0 bg-surface-container-low border-b lg:border-b-0 lg:border-r border-outline-variant/30 py-8 px-6 lg:sticky lg:top-[120px] lg:h-[calc(100vh-120px)] flex flex-col justify-between z-30">
+      <aside className="w-full lg:w-[280px] shrink-0 bg-surface-container-low border-b lg:border-b-0 lg:border-r border-outline-variant/30 py-8 px-6 lg:sticky lg:top-[100px] lg:max-h-[calc(100vh-100px)] overflow-y-auto flex flex-col justify-between z-30">
         <div>
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-2 text-tertiary">

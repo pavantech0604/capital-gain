@@ -28,11 +28,11 @@ export function MainNav() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
           isScrolled || mobileOpen
-            ? "py-3 md:py-4 px-4 sm:px-6 md:px-12 bg-bg/90 backdrop-blur-lg border-b border-border/40 shadow-[0_4px_30px_rgba(0,0,0,0.4)]" 
-            : "py-4 md:py-6 px-4 sm:px-6 md:px-12 bg-transparent"
+            ? "py-2 md:py-3 px-4 sm:px-6 md:px-12 bg-bg/90 backdrop-blur-lg border-b border-border/40 shadow-[0_4px_30px_rgba(0,0,0,0.4)]" 
+            : "py-3 md:py-4 px-4 sm:px-6 md:px-12 bg-transparent"
         )}
       >
-        <div className="max-w-[1440px] mx-auto flex justify-between items-center h-14 md:h-16">
+        <div className="max-w-[1440px] mx-auto flex justify-between items-center h-12 md:h-14">
           {/* Logo Container */}
           <Link
             href="/"

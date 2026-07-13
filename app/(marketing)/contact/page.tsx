@@ -38,7 +38,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="relative min-h-[35vh] flex flex-col items-center justify-center text-center overflow-hidden pt-[120px] lg:pt-[140px] pb-16">
+      <section className="relative flex flex-col items-center justify-center text-center overflow-hidden pt-[120px] lg:pt-[140px] pb-16">
         
         <div className="relative z-10 max-w-4xl px-6">
           <Reveal>

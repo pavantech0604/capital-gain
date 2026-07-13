@@ -20,7 +20,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-[40vh] flex flex-col items-center justify-center text-center overflow-hidden pt-[120px] lg:pt-[140px] pb-16">
+      <section className="relative flex flex-col items-center justify-center text-center overflow-hidden pt-[120px] lg:pt-[140px] pb-16">
         
         <div className="relative z-10 max-w-4xl px-6">
           <motion.span
@@ -55,7 +55,7 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ FOUNDER SECTION (Editorial Layout) ═══ */}
-      <section className="py-24 bg-surface-container-lowest border-y border-outline-variant/30 overflow-hidden">
+      <section className="py-24 bg-[#0a0f1e] border-t border-border/20 overflow-hidden">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 xl:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Image Container */}
@@ -133,7 +133,7 @@ export default function AboutPage() {
 
         <div className="relative">
           {/* Vertical timeline line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-outline-variant/30 -translate-x-1/2 hidden md:block" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/20 -translate-x-1/2 hidden md:block" />
 
           <div className="space-y-16">
             {[
@@ -182,7 +182,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Bullet center dot */}
-                  <div className="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center z-10 hidden md:flex shadow-xl">
+                  <div className="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#0a0f1e] border border-primary/20 flex items-center justify-center z-10 hidden md:flex shadow-[0_0_15px_rgba(14,165,164,0.15)]">
                     <SideIcon className="w-5 h-5 text-primary" />
                   </div>
 
@@ -196,7 +196,7 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ VALUES SECTION ═══ */}
-      <section className="py-24 bg-surface-container-low border-t border-outline-variant/30 overflow-hidden">
+      <section className="py-24 bg-deep-charcoal border-t border-border/20 overflow-hidden">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 xl:px-20">
           <Reveal>
             <div className="max-w-2xl mb-16">

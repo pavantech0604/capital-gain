@@ -30,6 +30,7 @@
 }
 
 /* ─── Tailwind v4 Theme Extension ─────────────────────────────────── */
+/* stylelint-disable-next-line at-rule-no-unknown */
 @theme inline {
   /* Colors mapping to CSS variables */
   --color-bg: var(--bg);
@@ -162,8 +163,8 @@ body {
 
 /* ─── Scrollbar ───────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -199,20 +200,58 @@ body {
   background: rgba(11, 16, 32, 0.75);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Premium Institutional Backgrounds ────────────────────────────────────────── */
+
+.bg-institutional-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.bg-institutional-grid-dense {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-deep-charcoal {
+  background: linear-gradient(180deg, #050814 0%, #080c1a 100%);
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--danger), transparent);
+  opacity: 0.5;
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { top: 100%; opacity: 0; }
 }
 
 /* ─── Premium Glows ───────────────────────────────────────────────── */
 .text-glow {
-  text-shadow: 0 0 15px rgba(14, 165, 164, 0.45);
+  filter: drop-shadow(0 0 15px rgba(14, 165, 164, 0.25));
 }
 
 .text-glow-gold {
-  text-shadow: 0 0 15px rgba(212, 166, 71, 0.45);
+  filter: drop-shadow(0 0 15px rgba(212, 166, 71, 0.25));
 }
 
 .text-glow-strong {
-  text-shadow: 0 0 25px rgba(14, 165, 164, 0.55), 0 0 50px rgba(14, 165, 164, 0.25);
+  filter: drop-shadow(0 0 25px rgba(14, 165, 164, 0.3)) drop-shadow(0 0 50px rgba(14, 165, 164, 0.15));
 }
 
 .glow-card {
@@ -317,16 +356,16 @@ body {
 /* ─── Responsive Fluid Typography Utilities ──────────────────────── */
 .text-display-lg {
   font-family: var(--font-heading);
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  line-height: clamp(2.5rem, 5.5vw, 4rem);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: clamp(2.25rem, 5vw, 3.25rem);
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
 .text-display-md {
   font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: clamp(2.25rem, 4.5vw, 3rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  line-height: clamp(2.25rem, 4vw, 2.75rem);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
