@@ -35,24 +35,31 @@ export default function LoginPage() {
         <ShaderBackground />
 
         {/* Branding Header */}
-        <div className="relative z-10 flex items-center gap-3">
-          <div className="relative w-10 h-10 transition-transform hover:rotate-6">
-            <Image
-              src="/logo.png"
-              alt={BRAND.name}
-              fill
-              sizes="40px"
-              className="object-contain logo-theme-color"
-            />
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="relative w-11 h-11 shrink-0">
+              <Image
+                src="/logo-mark.png"
+                alt={BRAND.name}
+                fill
+                unoptimized
+                className="object-contain logo-premium"
+                priority
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center text-[20px] font-heading font-extrabold tracking-wider leading-none uppercase">
+                <span className="text-[#0B192C]">CAPITAL</span>
+                <span className="text-[#16A34A] ml-1">GROW</span>
+              </div>
+              <span className="text-[8px] font-mono font-bold tracking-[0.14em] text-[#D4AF37] uppercase leading-none mt-1">
+                {BRAND.tagline}
+              </span>
+            </div>
           </div>
-          <div>
-            <h1 className="text-[17px] font-heading font-extrabold tracking-wide text-text uppercase leading-none">
-              {BRAND.name}
-            </h1>
-            <p className="text-[9px] font-mono font-semibold tracking-widest text-primary uppercase mt-1">
-              RESEARCH ID: {BRAND.regNo}
-            </p>
-          </div>
+          <span className="text-[10px] font-mono text-primary uppercase tracking-widest bg-white/80 border border-warm-border px-3.5 py-1.5 rounded-full font-bold shadow-sm backdrop-blur-sm">
+            RESEARCH ID: {BRAND.regNo}
+          </span>
         </div>
 
         {/* Content Area */}
@@ -141,17 +148,28 @@ export default function LoginPage() {
         <div className="w-full max-w-[380px] py-4 space-y-5">
           {/* Mobile Branding (Hidden on Desktop) */}
           <div className="lg:hidden flex flex-col items-center mb-6 text-center">
-            <div className="relative w-12 h-12 mb-3">
-              <Image
-                src="/logo.png"
-                alt={BRAND.name}
-                fill
-                sizes="48px"
-                className="object-contain logo-theme-color"
-              />
+            <div className="flex items-center gap-3 mb-2">
+              <div className="relative w-12 h-12 shrink-0">
+                <Image
+                  src="/logo-mark.png"
+                  alt={BRAND.name}
+                  fill
+                  unoptimized
+                  className="object-contain logo-premium"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col text-left">
+                <div className="flex items-center text-[20px] font-heading font-black tracking-wider leading-none uppercase">
+                  <span className="text-[#0B192C]">CAPITAL</span>
+                  <span className="text-[#16A34A] ml-1">GROW</span>
+                </div>
+                <span className="text-[8px] font-mono font-extrabold tracking-[0.14em] text-[#D4AF37] uppercase leading-none mt-1">
+                  EQUITY RESEARCH
+                </span>
+              </div>
             </div>
-            <h1 className="text-headline-lg font-heading font-extrabold text-text tracking-wide uppercase leading-tight">{BRAND.name}</h1>
-            <p className="text-label-sm text-primary font-mono tracking-widest uppercase mt-1">
+            <p className="text-[10px] text-primary font-mono tracking-widest uppercase font-bold mt-1">
               RESEARCH ID: {BRAND.regNo}
             </p>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { BRAND, DASHBOARD_NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -59,15 +60,25 @@ export function Sidebar({ mobileOpen, onClose }: SidebarProps) {
         )}
       >
         {/* Brand */}
-        <div className="px-6 mb-12 flex items-center justify-between">
-          <Link href="/dashboard" className="block" onClick={onClose}>
-            <h1 className="text-headline-md text-on-surface font-semibold">
-              {BRAND.name}
-            </h1>
-            <div className="mt-2 flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-primary" />
-              <span className="text-label-sm text-on-surface-variant">
-                Verified Research Desk
+        <div className="px-5 mb-8 flex items-center justify-between">
+          <Link href="/dashboard" className="flex items-center gap-2.5 group py-1" onClick={onClose}>
+            <div className="relative w-9 h-9 shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/logo-mark.png"
+                alt={BRAND.name}
+                fill
+                unoptimized
+                className="object-contain logo-premium"
+                priority
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center text-[16px] font-heading font-extrabold tracking-wider leading-none uppercase">
+                <span className="text-[#0B192C]">CAPITAL</span>
+                <span className="text-[#16A34A] ml-1">GROW</span>
+              </div>
+              <span className="text-[7.5px] font-mono font-bold tracking-[0.14em] text-[#D4AF37] uppercase leading-none mt-1 group-hover:text-primary transition-colors">
+                EQUITY RESEARCH
               </span>
             </div>
           </Link>

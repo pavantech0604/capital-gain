@@ -15,22 +15,23 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 lg:gap-10 mb-12 sm:mb-16">
           {/* Brand Column */}
           <div className="col-span-1 sm:col-span-6 lg:col-span-4 flex flex-col gap-4 sm:gap-5">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-9 h-9">
+            <Link href="/" className="flex items-center gap-3 group py-1">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/logo.png"
+                  src="/logo-mark.png"
                   alt={BRAND.name}
                   fill
-                  sizes="36px"
-                  className="object-contain logo-theme-color"
+                  unoptimized
+                  className="object-contain logo-premium"
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <span className="text-[17px] font-heading font-extrabold tracking-wide text-text uppercase group-hover:text-primary transition-colors leading-tight">
-                  Capital Gain
-                </span>
-                <span className="text-[9px] font-mono font-semibold tracking-wider text-primary uppercase leading-none mt-0.5">
-                  Equity Research
+                <div className="flex items-center text-[18px] sm:text-[20px] font-heading font-extrabold tracking-wider leading-none uppercase">
+                  <span className="text-[#0B192C]">CAPITAL</span>
+                  <span className="text-[#16A34A] ml-1">GROW</span>
+                </div>
+                <span className="text-[7.5px] sm:text-[8.5px] font-mono font-bold tracking-[0.14em] text-[#D4AF37] uppercase leading-none mt-1 group-hover:text-primary transition-colors">
+                  {BRAND.tagline}
                 </span>
               </div>
             </Link>

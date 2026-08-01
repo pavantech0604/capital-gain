@@ -10,13 +10,13 @@
   --border: rgba(31, 31, 27, 0.10);
   --text: #1F1F1B;
   --text-muted: #6F6A61;
-  
+
   /* Brand Accents */
   --primary: #E67E22;
   --primary-dark: #C86512;
   --accent: #C9A227;
   --accent-soft: rgba(201, 162, 39, 0.12);
-  
+
   /* State Colors */
   --success: #16a34a;
   --danger: #dc2626;
@@ -75,6 +75,7 @@
       opacity: 0;
       transform: translateY(24px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -82,9 +83,12 @@
   }
 
   @keyframes glow-pulse {
-    0%, 100% {
+
+    0%,
+    100% {
       box-shadow: 0 0 15px rgba(230, 126, 34, 0.1);
     }
+
     50% {
       box-shadow: 0 0 35px rgba(230, 126, 34, 0.2);
     }
@@ -94,52 +98,68 @@
     0% {
       background-position: -200% 0;
     }
+
     100% {
       background-position: 200% 0;
     }
   }
 
   @keyframes float-slow {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px) rotate(0deg);
     }
+
     50% {
       transform: translateY(-12px) rotate(1deg);
     }
   }
 
   @keyframes float-medium {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px) rotate(0deg);
     }
+
     50% {
       transform: translateY(-8px) rotate(-1deg);
     }
   }
 
   @keyframes float-fast {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-6px);
     }
   }
 
   @keyframes border-glow {
-    0%, 100% {
+
+    0%,
+    100% {
       border-color: rgba(230, 126, 34, 0.15);
     }
+
     50% {
       border-color: rgba(201, 162, 39, 0.4);
     }
   }
 
   @keyframes pulse-subtle {
-    0%, 100% {
+
+    0%,
+    100% {
       opacity: 0.8;
       transform: scale(1);
     }
+
     50% {
       opacity: 1;
       transform: scale(1.02);
@@ -213,14 +233,14 @@ body {
 
 .bg-institutional-grid {
   background-size: 40px 40px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(31, 31, 27, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(31, 31, 27, 0.03) 1px, transparent 1px);
 }
 
 .bg-institutional-grid-dense {
   background-size: 20px 20px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(31, 31, 27, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(31, 31, 27, 0.04) 1px, transparent 1px);
 }
@@ -249,10 +269,23 @@ body {
 }
 
 @keyframes scan {
-  0% { top: 0%; opacity: 0; }
-  10% { opacity: 0.3; }
-  90% { opacity: 0.3; }
-  100% { top: 100%; opacity: 0; }
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.3;
+  }
+
+  90% {
+    opacity: 0.3;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 /* ─── Premium Subtle Accents ──────────────────────────────────────── */
@@ -295,8 +328,8 @@ body {
 .hover-glow-card:hover {
   transform: translateY(-6px);
   border-color: rgba(230, 126, 34, 0.25);
-  box-shadow: 0 12px 30px -10px rgba(230, 126, 34, 0.12), 
-              0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 30px -10px rgba(230, 126, 34, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .hover-glow-card-gold {
@@ -306,8 +339,8 @@ body {
 .hover-glow-card-gold:hover {
   transform: translateY(-6px);
   border-color: rgba(201, 162, 39, 0.3);
-  box-shadow: 0 12px 30px -10px rgba(201, 162, 39, 0.12), 
-              0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 30px -10px rgba(201, 162, 39, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 /* ─── Logo Filter (Charcoal on Light) ─────────────────────────────── */
@@ -317,12 +350,10 @@ body {
 
 /* ─── Skeleton Loader ─────────────────────────────────────────────── */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--surface) 25%,
-    var(--surface-strong) 50%,
-    var(--surface) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--surface) 25%,
+      var(--surface-strong) 50%,
+      var(--surface) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
   border-radius: 4px;
@@ -330,7 +361,7 @@ body {
 
 /* ─── Soft Ambient Blurs ──────────────────────────────────────────── */
 .bg-mesh-glow {
-  background-image: 
+  background-image:
     radial-gradient(at 10% 20%, rgba(230, 126, 34, 0.06) 0px, transparent 50%),
     radial-gradient(at 90% 10%, rgba(201, 162, 39, 0.04) 0px, transparent 50%),
     radial-gradient(at 50% 80%, rgba(250, 248, 244, 0.8) 0px, transparent 70%);
@@ -358,13 +389,13 @@ body {
 .gradient-border-gold {
   border: 1px solid transparent;
   background: linear-gradient(#FFFFFF, #FFFFFF) padding-box,
-              linear-gradient(135deg, var(--accent) 0%, rgba(201, 162, 39, 0.1) 50%, var(--primary) 100%) border-box;
+    linear-gradient(135deg, var(--accent) 0%, rgba(201, 162, 39, 0.1) 50%, var(--primary) 100%) border-box;
 }
 
 .gradient-border-teal {
   border: 1px solid transparent;
   background: linear-gradient(#FFFFFF, #FFFFFF) padding-box,
-              linear-gradient(135deg, var(--primary) 0%, rgba(230, 126, 34, 0.1) 50%, var(--accent) 100%) border-box;
+    linear-gradient(135deg, var(--primary) 0%, rgba(230, 126, 34, 0.1) 50%, var(--accent) 100%) border-box;
 }
 
 /* ─── Responsive Fluid Typography Utilities ──────────────────────── */
@@ -505,7 +536,7 @@ body {
 
 /* ─── Premium Text Highlights ─────────────────────────────────────── */
 .shine-text {
-  background: linear-gradient(120deg, rgba(31,31,27,0) 30%, rgba(230,126,34,0.3) 50%, rgba(31,31,27,0) 70%);
+  background: linear-gradient(120deg, rgba(31, 31, 27, 0) 30%, rgba(230, 126, 34, 0.3) 50%, rgba(31, 31, 27, 0) 70%);
   background-size: 200% 100%;
   animation: shine 4s infinite;
   -webkit-background-clip: text;
@@ -516,6 +547,7 @@ body {
   0% {
     background-position: 100% 0;
   }
+
   100% {
     background-position: -100% 0;
   }
@@ -534,9 +566,11 @@ body {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -547,6 +581,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

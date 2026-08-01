@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -43,18 +44,31 @@ export default function SignupPage() {
         <ShaderBackground />
 
         {/* Branding Header */}
-        <div className="relative z-10 flex items-center gap-4">
-          <div className="flex items-center justify-center w-12 h-12 bg-primary rounded-xl text-on-primary">
-            <ShieldCheck className="w-7 h-7" />
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="relative w-11 h-11 shrink-0">
+              <Image
+                src="/logo-mark.png"
+                alt={BRAND.name}
+                fill
+                unoptimized
+                className="object-contain logo-premium"
+                priority
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center text-[20px] font-heading font-extrabold tracking-wider leading-none uppercase">
+                <span className="text-[#0B192C]">CAPITAL</span>
+                <span className="text-[#16A34A] ml-1">GROW</span>
+              </div>
+              <span className="text-[8px] font-mono font-bold tracking-[0.14em] text-[#D4AF37] uppercase leading-none mt-1">
+                {BRAND.tagline}
+              </span>
+            </div>
           </div>
-          <div>
-            <h1 className="text-headline-lg font-bold text-primary tracking-tight">
-              {BRAND.name}
-            </h1>
-            <p className="text-label-sm text-on-surface-variant uppercase tracking-widest">
-              RESEARCH ID: {BRAND.regNo}
-            </p>
-          </div>
+          <span className="text-[10px] font-mono text-primary uppercase tracking-widest bg-white/80 border border-warm-border px-3.5 py-1.5 rounded-full font-bold shadow-sm backdrop-blur-sm">
+            RESEARCH ID: {BRAND.regNo}
+          </span>
         </div>
 
         {/* Content Area */}
@@ -120,11 +134,28 @@ export default function SignupPage() {
         <div className="w-full max-w-[420px] py-8 space-y-6">
           {/* Mobile Branding (Hidden on Desktop) */}
           <div className="lg:hidden flex flex-col items-center mb-6 text-center">
-            <div className="flex items-center justify-center w-12 h-12 bg-primary rounded-xl mb-4 text-on-primary">
-              <ShieldCheck className="w-7 h-7" />
+            <div className="flex items-center gap-3 mb-2">
+              <div className="relative w-12 h-12 shrink-0">
+                <Image
+                  src="/logo-mark.png"
+                  alt={BRAND.name}
+                  fill
+                  unoptimized
+                  className="object-contain logo-premium"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col text-left">
+                <div className="flex items-center text-[20px] font-heading font-black tracking-wider leading-none uppercase">
+                  <span className="text-[#0B192C]">CAPITAL</span>
+                  <span className="text-[#16A34A] ml-1">GROW</span>
+                </div>
+                <span className="text-[8px] font-mono font-extrabold tracking-[0.14em] text-[#D4AF37] uppercase leading-none mt-1">
+                  EQUITY RESEARCH
+                </span>
+              </div>
             </div>
-            <h1 className="text-headline-lg font-bold text-primary">{BRAND.name}</h1>
-            <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">
+            <p className="text-[10px] text-primary font-mono tracking-widest uppercase font-bold mt-1">
               RESEARCH ID: {BRAND.regNo}
             </p>
           </div>

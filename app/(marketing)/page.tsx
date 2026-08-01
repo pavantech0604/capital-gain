@@ -26,7 +26,8 @@ import {
   Activity,
   Zap,
   Lock,
-  Layers
+  Layers,
+  Sparkles
 } from "lucide-react";
 import { Reveal, GlassCard, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BRAND, PLANS, DISCLAIMER } from "@/lib/constants";
@@ -72,7 +73,7 @@ const RECENT_SIGNALS = [
 // FAQS data
 const FAQS = [
   {
-    q: "What is the core methodology of Capital Gain?",
+    q: "What is the core methodology of Capital Grow?",
     a: "We employ quantitative and fundamental models to identify high-probability swing and growth setups in Indian equities. Our research process is fully system-driven to eliminate emotional bias."
   },
   {
@@ -98,14 +99,14 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen bg-white overflow-hidden">
-      
+
       {/* ═══ DECORATIVE BACKGROUNDS ═══ */}
       <div className="blur-blob-gold top-[30%] -right-40" />
       <div className="blur-blob-teal top-[60%] left-[-20%]" />
 
       {/* ═══ HERO SECTION ═══ */}
       <section className="relative z-10 pt-[90px] sm:pt-[100px] md:pt-[110px] lg:pt-[130px] pb-10 md:pb-16 px-4 sm:px-6 md:px-12 xl:px-20 max-w-[1440px] mx-auto flex flex-col items-center justify-center text-center overflow-hidden">
-        
+
         {/* Animated Background Stock Chart Line */}
         <div className="absolute inset-0 w-full h-full overflow-hidden select-none pointer-events-none z-0 flex items-center justify-center">
           <svg className="w-[120%] h-[70%] min-w-[1000px] text-primary" viewBox="0 0 1000 300" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,7 +159,7 @@ export default function HomePage() {
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-4xl flex flex-col items-center w-full">
-          
+
           {/* Live Indicator */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, filter: "blur(4px)" }}
@@ -232,7 +233,7 @@ export default function HomePage() {
 
         {/* ═══ FLOATING STAT WIDGETS & PREVIEW ═══ */}
         <div className="relative w-full max-w-[800px] xl:max-w-[1000px] 2xl:max-w-[1200px] mt-4 md:mt-8 lg:mt-12 mb-10 mx-auto flex flex-col items-center w-full px-4">
-          
+
           {/* Responsive Widgets Container (Grid on mobile, Absolute on Desktop) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full max-w-[500px] mb-8 lg:mb-0 lg:max-w-none lg:block z-20">
             {/* Floating Widget 1: Accuracy Rate */}
@@ -326,14 +327,14 @@ export default function HomePage() {
                   <div className="w-3 h-3 rounded-full bg-primary/60" />
                 </div>
                 <div className="bg-white px-6 py-1 rounded-md border border-warm-border max-w-sm w-full text-text-muted text-[10px] font-mono text-center flex items-center justify-center gap-2 shadow-sm">
-                  <Lock className="w-3 h-3 text-success animate-pulse" /> secure.capitalgain.in/terminal
+                  <Lock className="w-3 h-3 text-success animate-pulse" /> secure.capitalgrow.in/terminal
                 </div>
                 <div className="w-10 h-2 bg-transparent" /> {/* Spacer */}
               </div>
 
               {/* Dashboard Content Mock */}
               <div className="p-4 md:p-6 bg-bg-soft grid grid-cols-12 gap-4 min-h-[350px]">
-                
+
                 {/* Stats Sidebar */}
                 <div className="col-span-12 md:col-span-4 flex flex-col gap-4">
                   <div className="bg-white rounded-xl p-4 border border-warm-border shadow-sm hover:border-primary/30 transition-colors group">
@@ -345,7 +346,7 @@ export default function HomePage() {
                       <div className="h-full bg-primary w-[78%]" />
                     </div>
                   </div>
-                  
+
                   <div className="bg-white rounded-xl p-4 border border-warm-border shadow-sm hover:border-accent/30 transition-colors group">
                     <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest mb-2 flex items-center justify-between">
                       Alpha Generated <span className="text-accent text-[9px] font-bold">TODAY</span>
@@ -362,7 +363,7 @@ export default function HomePage() {
                 {/* Central Graph Box */}
                 <div className="col-span-12 md:col-span-8 bg-white rounded-xl border border-warm-border shadow-sm p-5 flex flex-col justify-between relative overflow-hidden">
                   <div className="absolute inset-0 bg-institutional-grid-dense opacity-20 pointer-events-none" />
-                  
+
                   <div className="flex justify-between items-center mb-6 relative z-10">
                     <div className="flex items-center gap-2">
                       <Activity className="w-4 h-4 text-primary animate-pulse" />
@@ -409,7 +410,7 @@ export default function HomePage() {
                       />
                     </svg>
                   </div>
-                  
+
                   {/* X-Axis Labels */}
                   <div className="mt-3 flex justify-between text-[9px] font-mono text-text-muted relative z-10 px-2">
                     <span>WK 01</span>
@@ -431,7 +432,7 @@ export default function HomePage() {
           <div className="glass-card-solid p-1 md:p-2 rounded-2xl md:rounded-[2rem] relative overflow-hidden">
             <div className="absolute inset-0 bg-institutional-grid opacity-30 pointer-events-none" />
             <div className="absolute top-0 right-1/3 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-warm-border relative z-10 bg-bg-soft rounded-xl md:rounded-[1.75rem] overflow-hidden">
               {[
                 {
@@ -477,7 +478,7 @@ export default function HomePage() {
       <section className="py-20 md:py-32 relative z-10 overflow-hidden bg-bg-soft">
         <div className="absolute inset-0 bg-institutional-grid opacity-20 pointer-events-none" />
         <div className="max-w-[1000px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-          
+
           <div className="text-center mb-16 md:mb-24">
             <Reveal>
               <h2 className="text-display-md text-text mb-4">
@@ -519,7 +520,7 @@ export default function HomePage() {
               ].map((step, i) => (
                 <StaggerItem key={step.num}>
                   <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-16 ${step.alignment === "right" ? "md:flex-row-reverse" : ""}`}>
-                    
+
                     {/* Mobile Only Icon Header (Hidden on Desktop) */}
                     <div className="flex md:hidden w-12 h-12 bg-white border border-primary/30 rounded-full items-center justify-center shadow-md mb-2 shrink-0">
                       <step.icon className="w-5 h-5 text-primary" />
@@ -560,81 +561,81 @@ export default function HomePage() {
       <section className="py-20 md:py-32 bg-bg-soft relative z-10 overflow-hidden border-t border-warm-border">
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 xl:px-20 relative z-10">
-        <div className="text-center mb-12 md:mb-16 max-w-xl mx-auto">
-          <Reveal>
-            <h2 className="text-display-md text-text mb-4">
-              A Framework Built on <span className="text-primary font-bold">Integrity</span>
-            </h2>
-            <p className="text-body-md text-text-muted">
-              We stand apart from speculative signal setups. We operate as a professional research publisher.
-            </p>
-          </Reveal>
-        </div>
+          <div className="text-center mb-12 md:mb-16 max-w-xl mx-auto">
+            <Reveal>
+              <h2 className="text-display-md text-text mb-4">
+                A Framework Built on <span className="text-primary font-bold">Integrity</span>
+              </h2>
+              <p className="text-body-md text-text-muted">
+                We stand apart from speculative signal setups. We operate as a professional research publisher.
+              </p>
+            </Reveal>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-6">
-          {/* Grid Item 1: Standard Compliance Details */}
-          <Reveal className="col-span-1 md:col-span-2 lg:col-span-7">
-            <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card-gold relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl pointer-events-none" />
-              <div>
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-accent-soft border border-accent/20 flex items-center justify-center text-accent mb-4">
-                  <Shield className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-6">
+            {/* Grid Item 1: Standard Compliance Details */}
+            <Reveal className="col-span-1 md:col-span-2 lg:col-span-7">
+              <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card-gold relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl pointer-events-none" />
+                <div>
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-accent-soft border border-accent/20 flex items-center justify-center text-accent mb-4">
+                    <Shield className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+                  </div>
+                  <h3 className="text-headline-lg font-bold text-text mb-2">Compliance & Risk Standards</h3>
+                  <p className="text-body-sm text-text-muted max-w-lg leading-relaxed">
+                    Strict compliance with institutional risk standards. All research parameters are verified by qualified risk personnel before publishing.
+                  </p>
                 </div>
-                <h3 className="text-headline-lg font-bold text-text mb-2">Compliance & Risk Standards</h3>
-                <p className="text-body-sm text-text-muted max-w-lg leading-relaxed">
-                  Strict compliance with institutional risk standards. All research parameters are verified by qualified risk personnel before publishing.
-                </p>
-              </div>
-            </GlassCard>
-          </Reveal>
+              </GlassCard>
+            </Reveal>
 
-          {/* Grid Item 2: Zero Conflict */}
-          <Reveal delay={0.1} className="col-span-1 md:col-span-1 lg:col-span-5">
-            <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative overflow-hidden">
-              <div className="absolute top-1/2 right-[-20%] -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5 animate-float-slow">
-                  <Lock className="w-5 h-5" />
+            {/* Grid Item 2: Zero Conflict */}
+            <Reveal delay={0.1} className="col-span-1 md:col-span-1 lg:col-span-5">
+              <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative overflow-hidden">
+                <div className="absolute top-1/2 right-[-20%] -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="relative z-10">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5 animate-float-slow">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-display-sm font-bold text-text mb-2">Zero Conflict Model</h3>
+                  <p className="text-body-sm text-text-muted leading-relaxed">
+                    We do not execute client funds or trade against recommendations. We operate strictly as research publishers to align 100% with your success.
+                  </p>
                 </div>
-                <h3 className="text-display-sm font-bold text-text mb-2">Zero Conflict Model</h3>
-                <p className="text-body-sm text-text-muted leading-relaxed">
-                  We do not execute client funds or trade against recommendations. We operate strictly as research publishers to align 100% with your success.
-                </p>
-              </div>
-            </GlassCard>
-          </Reveal>
+              </GlassCard>
+            </Reveal>
 
-          {/* Grid Item 3: Deep Expertise */}
-          <Reveal delay={0.15} className="col-span-1 md:col-span-1 lg:col-span-4">
-            <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative">
-              <div>
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
-                  <Brain className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+            {/* Grid Item 3: Deep Expertise */}
+            <Reveal delay={0.15} className="col-span-1 md:col-span-1 lg:col-span-4">
+              <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative">
+                <div>
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
+                    <Brain className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+                  </div>
+                  <h3 className="text-headline-lg font-bold text-text mb-2">Quantitative Models</h3>
+                  <p className="text-body-sm text-text-muted leading-relaxed">
+                    Algorithms backtested across business cycles to generate high probability swing setups.
+                  </p>
                 </div>
-                <h3 className="text-headline-lg font-bold text-text mb-2">Quantitative Models</h3>
-                <p className="text-body-sm text-text-muted leading-relaxed">
-                  Algorithms backtested across business cycles to generate high probability swing setups.
-                </p>
-              </div>
-            </GlassCard>
-          </Reveal>
+              </GlassCard>
+            </Reveal>
 
-          {/* Grid Item 4: Support Desk */}
-          <Reveal delay={0.2} className="col-span-1 md:col-span-2 lg:col-span-8">
-            <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
-              <div>
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
-                  <HeadphonesIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+            {/* Grid Item 4: Support Desk */}
+            <Reveal delay={0.2} className="col-span-1 md:col-span-2 lg:col-span-8">
+              <GlassCard className="p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[220px] h-full hover-glow-card relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
+                <div>
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
+                    <HeadphonesIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+                  </div>
+                  <h3 className="text-headline-lg font-bold text-text mb-2">Priority Support Desk</h3>
+                  <p className="text-body-sm text-text-muted max-w-lg leading-relaxed">
+                    Dedicated desk access for Institutional and HNI members. Instant synchronization via client portals.
+                  </p>
                 </div>
-                <h3 className="text-headline-lg font-bold text-text mb-2">Priority Support Desk</h3>
-                <p className="text-body-sm text-text-muted max-w-lg leading-relaxed">
-                  Dedicated desk access for Institutional and HNI members. Instant synchronization via client portals.
-                </p>
-              </div>
-            </GlassCard>
-          </Reveal>
-        </div>
+              </GlassCard>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -663,15 +664,14 @@ export default function HomePage() {
                           <p className="text-[12px] font-mono text-text-muted">{sig.ticker}</p>
                           <h4 className="text-headline-md font-bold text-text mt-0.5">{sig.company}</h4>
                         </div>
-                        <span className={`px-3 py-1.5 rounded-full text-label-sm font-bold uppercase tracking-wider text-[10px] ${
-                          sig.status === "Target Met" 
-                            ? "bg-success/10 text-success border border-success/20" 
+                        <span className={`px-3 py-1.5 rounded-full text-label-sm font-bold uppercase tracking-wider text-[10px] ${sig.status === "Target Met"
+                            ? "bg-success/10 text-success border border-success/20"
                             : "bg-primary/10 text-primary border border-primary/20"
-                        }`}>
+                          }`}>
                           {sig.status}
                         </span>
                       </div>
-                      
+
                       <div className="grid grid-cols-3 gap-2 py-4 border-y border-border/20 my-4 text-center">
                         <div>
                           <p className="text-[10px] font-mono text-text-muted uppercase tracking-wider">Entry</p>
@@ -808,7 +808,7 @@ export default function HomePage() {
                 </div>
                 <p className="text-xs text-text-muted/60 font-mono hidden md:block">Optimized for Vercel edge deployment</p>
               </div>
-              
+
               {/* Decorative Mock phone */}
               <div className="w-full md:w-48 aspect-[16/9] md:aspect-[9/15] bg-white rounded-2xl border border-warm-border overflow-hidden relative z-10 shrink-0 shadow-sm">
                 <div className="absolute top-0 inset-x-0 h-4 bg-bg-soft border-b border-warm-border/50 flex items-center justify-center">
@@ -983,7 +983,7 @@ export default function HomePage() {
         <Reveal>
           <div className="bg-red-50 border-l-4 border-l-danger border-y border-r border-red-200 p-5 sm:p-8 md:p-10 rounded-r-3xl rounded-bl-sm flex items-start gap-4 sm:gap-6 flex-col md:flex-row shadow-sm relative overflow-hidden">
             <div className="scan-line" />
-            
+
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-100 border border-red-200 flex items-center justify-center text-danger shrink-0 z-10 shadow-sm">
               <AlertTriangle className="w-5.5 h-5.5 sm:w-6 sm:h-6 animate-pulse" />
             </div>

@@ -1,16 +1,16 @@
 // ─── Brand ───────────────────────────────────────────────────────────
 export const BRAND = {
-  name: "Capital Gain",
-  fullName: "Capital Gain Research",
-  tagline: "Precision research for the modern investor.",
+  name: "Capital Grow",
+  fullName: "Capital Grow Research",
+  tagline: "GROW YOUR CAPITAL, GROW YOUR FUTURE",
   regNo: "CGR-2024-0012",
   regDate: "Oct 24, 2024",
   entityType: "Equity Research Desk",
   foundedYear: 2024,
   email: {
-    compliance: "compliance@capitalgain.in",
-    support: "support@capitalgain.in",
-    institutional: "research@capitalgain.in",
+    compliance: "compliance@capitalgrow.in",
+    support: "support@capitalgrow.in",
+    institutional: "research@capitalgrow.in",
   },
   phone: {
     tollFree: "1800-456-7890",
@@ -29,7 +29,7 @@ export const BRAND = {
   },
   complianceOfficer: {
     name: "Arjun Mehta",
-    email: "arjun.mehta@capitalgain.in",
+    email: "arjun.mehta@capitalgrow.in",
     designation: "Compliance Officer",
   },
 } as const;

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { BRAND, NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChevronRight, Landmark } from "lucide-react";
+import { Menu, X, ChevronRight, Landmark, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function MainNav() {
@@ -28,32 +28,36 @@ export function MainNav() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
           isScrolled || mobileOpen
-            ? "py-2 md:py-3 px-4 sm:px-6 md:px-12 bg-white/95 backdrop-blur-lg border-b border-warm-border shadow-[0_1px_3px_rgba(0,0,0,0.06)]" 
+            ? "py-2 md:py-3 px-4 sm:px-6 md:px-12 bg-white/95 backdrop-blur-xl border-b border-warm-border shadow-[0_4px_20px_rgba(0,0,0,0.06)]"
             : "py-3 md:py-4 px-4 sm:px-6 md:px-12 bg-transparent"
         )}
       >
-        <div className="max-w-[1440px] mx-auto flex justify-between items-center h-12 md:h-14">
-          {/* Logo Container */}
+        <div className="max-w-[1440px] mx-auto flex justify-between items-center h-16 md:h-20">
+          {/* Sleek Balanced Premium Branding */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 md:gap-3 group relative z-50"
+            className="flex items-center gap-2.5 sm:gap-3 group relative z-50 py-1"
             onClick={() => setMobileOpen(false)}
           >
-            <div className="relative w-8 h-8 md:w-10 md:h-10 transition-all duration-500 group-hover:rotate-12 group-hover:scale-105">
+            {/* Emblem Symbol */}
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 shrink-0 transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/logo.png"
+                src="/logo-mark.png"
                 alt={BRAND.name}
                 fill
-                sizes="(max-width: 768px) 32px, 40px"
-                className="object-contain logo-theme-color"
+                unoptimized
+                className="object-contain logo-premium"
+                priority
               />
             </div>
+            {/* Elegant Typography */}
             <div className="flex flex-col justify-center">
-              <span className="text-[15px] md:text-[18px] font-heading font-extrabold tracking-[0.08em] text-text uppercase group-hover:text-primary transition-colors duration-300 leading-tight">
-                Capital Gain
-              </span>
-              <span className="text-[8px] md:text-[9px] font-mono font-semibold tracking-[0.16em] text-primary uppercase leading-none mt-0.5">
-                Equity Research
+              <div className="flex items-center text-[16px] sm:text-[18px] md:text-[20px] font-heading font-extrabold tracking-wider leading-none uppercase">
+                <span className="text-[#0B192C]">CAPITAL</span>
+                <span className="text-[#16A34A] ml-1">GROW</span>
+              </div>
+              <span className="text-[7px] sm:text-[8px] font-mono font-bold tracking-[0.14em] text-[#D4AF37] uppercase leading-none mt-1 group-hover:text-primary transition-colors">
+                {BRAND.tagline}
               </span>
             </div>
           </Link>
@@ -127,7 +131,7 @@ export function MainNav() {
               <span className="text-[10px] font-mono font-bold tracking-widest text-text-muted uppercase px-2 mb-1">
                 Navigation Menu
               </span>
-              <motion.div 
+              <motion.div
                 className="flex flex-col gap-2.5"
                 variants={{
                   show: { transition: { staggerChildren: 0.05 } }

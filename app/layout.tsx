@@ -26,8 +26,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Capital Gain Research | Professional Equity Analysis",
-    template: "%s | Capital Gain Research",
+    default: "Capital Grow Research | Professional Equity Analysis",
+    template: "%s | Capital Grow Research",
   },
   description:
     "Professional equity insights for the serious investor. We provide data-driven market analysis to help you navigate Indian equities with confidence.",
@@ -37,20 +37,27 @@ export const metadata: Metadata = {
     "stock recommendations",
     "market analysis",
     "investment research",
-    "Capital Gain",
+    "Capital Grow",
   ],
-  authors: [{ name: "Capital Gain Research" }],
+  authors: [{ name: "Capital Grow Research" }],
   openGraph: {
-    title: "Capital Gain Research | Professional Equity Analysis",
+    title: "Capital Grow Research | Professional Equity Analysis",
     description:
       "Professional research for the modern investor. High-conviction swing and growth ideas.",
     type: "website",
     locale: "en_IN",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: [
+      { url: "/favicon-32x32.png?v=2", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png?v=2", type: "image/png", sizes: "16x16" },
+      { url: "/icon.png?v=2", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.ico?v=2", sizes: "any" },
+    ],
+    shortcut: "/icon.png?v=2",
+    apple: [
+      { url: "/apple-icon.png?v=2", sizes: "512x512", type: "image/png" },
+    ],
   },
 };
 

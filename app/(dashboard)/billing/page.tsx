@@ -209,10 +209,10 @@ export default function BillingPage() {
                 </label>
                 <div className="inline-flex items-center gap-3 bg-canvas px-4 py-2 rounded-xl border border-white/10 group hover:border-primary transition-all">
                   <span className="text-headline-md text-primary font-bold">
-                    capitalgain.official@axis
+                    capitalgrow.official@axis
                   </span>
                   <button
-                    onClick={() => copyToClipboard("capitalgain.official@axis", "upi")}
+                    onClick={() => copyToClipboard("capitalgrow.official@axis", "upi")}
                     className="text-on-surface-variant hover:text-primary transition-colors"
                   >
                     {copiedField === "upi" ? (
