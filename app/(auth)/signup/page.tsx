@@ -67,7 +67,7 @@ export default function SignupPage() {
             </div>
           </div>
           <span className="text-[10px] font-mono text-primary uppercase tracking-widest bg-white/80 border border-warm-border px-3.5 py-1.5 rounded-full font-bold shadow-sm backdrop-blur-sm">
-            RESEARCH ID: {BRAND.regNo}
+            EQUITY RESEARCH DESK
           </span>
         </div>
 
@@ -156,7 +156,7 @@ export default function SignupPage() {
               </div>
             </div>
             <p className="text-[10px] text-primary font-mono tracking-widest uppercase font-bold mt-1">
-              RESEARCH ID: {BRAND.regNo}
+              ANALYTICS &amp; INSIGHTS
             </p>
           </div>
 

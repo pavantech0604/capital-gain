@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BRAND, FOOTER_LINKS, DISCLAIMER } from "@/lib/constants";
-import { Shield, CheckCircle } from "lucide-react";
+import { Shield, Clock } from "lucide-react";
 
 export function Footer() {
   return (
@@ -102,26 +102,30 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Compliance Officer Card */}
+          {/* Compliance & Contact Desk Card */}
           <div className="col-span-1 sm:col-span-12 lg:col-span-4 bg-white border border-warm-border p-5 sm:p-6 rounded-2xl shadow-sm">
             <h4 className="text-headline-md font-bold text-text mb-4 flex items-center gap-2">
               <Shield className="w-5 h-5 text-primary" />
-              Compliance Officer
+              Advisory &amp; Support Desk
             </h4>
             <div className="space-y-3 text-body-sm text-text-muted">
               <div>
-                <p className="text-xs text-text-muted/60 leading-none">Name</p>
-                <p className="font-semibold text-text mt-1">{BRAND.complianceOfficer.name}</p>
+                <p className="text-xs text-text-muted/60 leading-none">Email Support</p>
+                <p className="font-mono hover:text-primary transition-colors mt-1 font-semibold text-text">
+                  <a href={`mailto:${BRAND.email.support}`}>{BRAND.email.support}</a>
+                </p>
               </div>
               <div>
-                <p className="text-xs text-text-muted/60 leading-none">Email</p>
-                <p className="font-mono hover:text-primary transition-colors mt-1">
-                  <a href={`mailto:${BRAND.complianceOfficer.email}`}>{BRAND.complianceOfficer.email}</a>
+                <p className="text-xs text-text-muted/60 leading-none">Desk Hotline</p>
+                <p className="font-mono hover:text-primary transition-colors mt-1 font-semibold text-text">
+                  <a href={`tel:${BRAND.phone.direct}`}>{BRAND.phone.direct}</a>
                 </p>
               </div>
               <div className="pt-2 border-t border-warm-border flex gap-2 items-center">
-                <CheckCircle className="w-4 h-4 text-success shrink-0" />
-                <span className="text-[10px] font-semibold text-success uppercase tracking-wider font-mono">Research ID: {BRAND.regNo}</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] font-semibold text-emerald-700 uppercase tracking-wider font-mono">
+                  {BRAND.deskStatus} • {BRAND.marketHours}
+                </span>
               </div>
             </div>
           </div>
@@ -141,7 +145,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 text-[11px] text-text-muted/65">
             <p>© {new Date().getFullYear()} {BRAND.fullName}. All rights reserved.</p>
             <p className="flex items-center gap-2">
-              <span>Release Code Date: {BRAND.regDate}</span>
+              <span>Established: {BRAND.regDate}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-warm-border" />
               <span>Entity: {BRAND.entityType}</span>
             </p>

@@ -50,8 +50,11 @@ export default function ServicesPage() {
         <aside className="w-full lg:w-[280px] shrink-0 bg-surface-container-low border-b lg:border-b-0 lg:border-r border-outline-variant/30 py-8 px-6 lg:sticky lg:top-[100px] lg:max-h-[calc(100vh-100px)] overflow-y-auto flex flex-col justify-between z-30">
           <div>
             <div className="mb-8">
-              <h3 className="text-headline-md font-bold text-on-surface">Corporate Registry</h3>
-              <p className="text-label-sm text-on-surface-variant">Registry ID: {BRAND.regNo}</p>
+              <h3 className="text-headline-md font-bold text-on-surface">Equity Research Desk</h3>
+              <p className="text-label-sm text-emerald-600 font-semibold flex items-center gap-1.5 mt-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Active Market Coverage
+              </p>
             </div>
             <nav className="space-y-1">
               <Link

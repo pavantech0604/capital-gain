@@ -256,9 +256,9 @@ export default function SupportPage() {
                   <div className="flex items-start gap-4">
                     <FileCheck2 className="w-5 h-5 text-outline mt-0.5 shrink-0" />
                     <div>
-                      <p className="text-on-surface font-bold text-body-md">Registry No</p>
-                      <p className="text-label-md text-primary font-bold mt-0.5">
-                        {BRAND.regNo}
+                      <p className="text-on-surface font-bold text-body-md">Desk Operations</p>
+                      <p className="text-label-md text-emerald-600 font-bold mt-0.5">
+                        {BRAND.deskStatus} ({BRAND.marketHours})
                       </p>
                     </div>
                   </div>
@@ -276,8 +276,7 @@ export default function SupportPage() {
               </div>
 
               <div className="mt-12 pt-6 border-t border-outline-variant/30 text-body-sm text-on-surface-variant leading-relaxed">
-                Registry Code: {BRAND.regNo}. In case of any grievances, investors can also
-                contact our compliance officer directly at {BRAND.complianceOfficer.email}.
+                In case of any grievances or inquiries, investors can contact our compliance officer directly at {BRAND.complianceOfficer.email}.
               </div>
             </GlassCard>
           </Reveal>
@@ -303,7 +302,7 @@ export default function SupportPage() {
             <div className="flex items-center gap-2">
               <ShieldAlert className="w-5 h-5 text-primary" />
               <span className="text-label-sm text-on-surface uppercase tracking-wider font-bold">
-                Corporate Registry
+                Transparent Governance
               </span>
             </div>
           </div>

@@ -27,9 +27,14 @@ import {
   Zap,
   Lock,
   Layers,
-  Sparkles
+  Sparkles,
+  Send,
+  Mail,
+  Phone,
+  Loader2,
 } from "lucide-react";
 import { Reveal, GlassCard, StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { InteractiveContactSection } from "@/components/shared/interactive-contact-section";
 import { BRAND, PLANS, DISCLAIMER } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -436,10 +441,10 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-warm-border relative z-10 bg-bg-soft rounded-xl md:rounded-[1.75rem] overflow-hidden">
               {[
                 {
-                  icon: ShieldCheck,
-                  label: "REG: INH000017259",
-                  title: "SEBI Registered",
-                  desc: "Disciplined market analysis cycle over cycle, fully regulated.",
+                  icon: TrendingUp,
+                  label: "SYSTEM DRIVEN",
+                  title: "Quantitative Screening",
+                  desc: "Multi-factor algorithmic models engineered to identify high-probability alpha across Indian equities.",
                 },
                 {
                   icon: Activity,
@@ -499,8 +504,8 @@ export default function HomePage() {
                 {
                   num: "PHASE 01",
                   icon: UserPlus,
-                  title: "KYC & Registration",
-                  desc: "Complete your basic profile configuration and KYC checklist in compliance with SEBI risk management guidelines.",
+                  title: "KYC & Verification",
+                  desc: "Complete your basic profile configuration and KYC checklist in compliance with our structured risk suitability guidelines.",
                   alignment: "left"
                 },
                 {
@@ -964,12 +969,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="shrink-0 w-full md:w-auto">
-                <div className="bg-bg-soft p-4 sm:p-5 md:p-6 rounded-2xl border border-warm-border/80 shadow-sm">
-                  <p className="text-[10px] font-mono text-primary font-bold uppercase tracking-wider mb-1 leading-none">
-                    VERIFIED AUDIT ID
+                <div className="bg-bg-soft p-4 sm:p-5 md:p-6 rounded-2xl border border-warm-border/80 shadow-sm text-center md:text-right">
+                  <p className="text-[10px] font-mono text-emerald-600 font-bold uppercase tracking-wider mb-1 leading-none flex items-center justify-center md:justify-end gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    RESEARCH DESK
                   </p>
-                  <p className="text-headline-lg font-extrabold text-text font-mono mt-1">
-                    {BRAND.regNo}
+                  <p className="text-headline-md font-bold text-text mt-1">
+                    Active Equity Coverage
                   </p>
                 </div>
               </div>
@@ -1001,6 +1007,9 @@ export default function HomePage() {
           </div>
         </Reveal>
       </section>
+
+      {/* ═══ INTERACTIVE CONTACT US SECTION ═══ */}
+      <InteractiveContactSection />
 
     </div>
   );

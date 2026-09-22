@@ -3,18 +3,21 @@ export const BRAND = {
   name: "Capital Grow",
   fullName: "Capital Grow Research",
   tagline: "GROW YOUR CAPITAL, GROW YOUR FUTURE",
-  regNo: "CGR-2024-0012",
-  regDate: "Oct 24, 2024",
+  deskStatus: "Active Research Desk",
+  marketHours: "09:15 - 15:30 IST",
+  coverage: "NSE & BSE Equities",
+  regDate: "Oct 2024",
   entityType: "Equity Research Desk",
   foundedYear: 2024,
   email: {
-    compliance: "compliance@capitalgrow.in",
-    support: "support@capitalgrow.in",
-    institutional: "research@capitalgrow.in",
+    compliance: "capitalgrow8651@gmail.com",
+    support: "capitalgrow8651@gmail.com",
+    institutional: "capitalgrow8651@gmail.com",
+    contact: "capitalgrow8651@gmail.com",
   },
   phone: {
-    tollFree: "1800-456-7890",
-    direct: "+91 40-6789-0123",
+    tollFree: "+91 7659801348",
+    direct: "+91 7659801348",
   },
   address: {
     line1: "Level 12, Financial District",
@@ -23,14 +26,13 @@ export const BRAND = {
     full: "Level 12, Financial District, Gachibowli, Hyderabad, Telangana 500032",
   },
   social: {
-    // TODO: Replace with actual social media URLs when available
     twitter: "https://twitter.com",
     linkedin: "https://linkedin.com",
   },
   complianceOfficer: {
     name: "Arjun Mehta",
-    email: "arjun.mehta@capitalgrow.in",
-    designation: "Compliance Officer",
+    email: "capitalgrow8651@gmail.com",
+    designation: "Research Desk Coordinator",
   },
 } as const;
 

@@ -93,10 +93,10 @@ export function MainNav() {
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-4">
             <Link
-              href="/login"
+              href="/contact"
               className="text-label-md text-text-muted px-4 py-2 hover:text-primary transition-all duration-300 font-semibold"
             >
-              Login
+              Contact Us
             </Link>
             <Link
               href="/services"
@@ -171,11 +171,11 @@ export function MainNav() {
             <div className="flex flex-col gap-5 mt-8 pb-4">
               <div className="flex flex-col gap-3">
                 <Link
-                  href="/login"
+                  href="/contact"
                   onClick={() => setMobileOpen(false)}
                   className="w-full text-center py-3.5 text-label-md font-bold text-text border border-warm-border rounded-xl hover:text-primary hover:border-primary/50 transition-all duration-300 bg-white shadow-sm"
                 >
-                  Member Login
+                  Contact Us
                 </Link>
                 <Link
                   href="/services"
@@ -186,11 +186,14 @@ export function MainNav() {
                 </Link>
               </div>
 
-              {/* Regulatory metadata at the bottom of drawer */}
-              <div className="pt-5 border-t border-warm-border flex flex-col gap-2 text-center text-[10px] font-mono text-text-muted">
-                <p className="font-semibold text-text">SEBI Registered Research Analyst</p>
-                <p>Registration No. {BRAND.regNo}</p>
-                <p className="opacity-75">Support: {BRAND.email.support}</p>
+              {/* Active desk status at the bottom of drawer */}
+              <div className="pt-5 border-t border-warm-border flex flex-col gap-1.5 text-center text-[10px] font-mono text-text-muted">
+                <p className="font-semibold text-text">Capital Grow Equity Research</p>
+                <p className="text-emerald-600 font-bold flex items-center justify-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Live Desk Active • 09:15 - 15:30 IST
+                </p>
+                <p className="opacity-75">Direct Desk: {BRAND.email.support}</p>
               </div>
             </div>
           </motion.div>

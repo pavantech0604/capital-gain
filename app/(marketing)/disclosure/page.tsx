@@ -60,9 +60,12 @@ export default function DisclosurePage() {
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-2 text-tertiary">
               <ShieldCheck className="w-5 h-5" />
-              <h3 className="text-headline-md font-bold text-on-surface">Corporate Registry</h3>
+              <h3 className="text-headline-md font-bold text-on-surface">Regulatory Disclosure</h3>
             </div>
-            <p className="text-label-sm text-on-surface-variant">Registry Code: {BRAND.regNo}</p>
+            <p className="text-label-sm text-emerald-600 font-medium flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Active Research Desk
+            </p>
           </div>
           <nav className="space-y-1">
             {navLinks.map((link) => (
@@ -121,27 +124,27 @@ export default function DisclosurePage() {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                   <div>
                     <span className="text-label-sm text-primary tracking-widest uppercase block mb-1 font-bold">
-                      Registry Profile
+                      Institutional Governance
                     </span>
                     <h2 className="text-headline-lg text-on-surface font-semibold">
-                      Registration Details
+                      Research Standards &amp; Transparency
                     </h2>
                   </div>
-                  <div className="px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-primary" />
-                    <span className="text-label-md text-primary font-bold">Active Standing</span>
+                  <div className="px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    <span className="text-label-md text-emerald-600 font-bold">Independent Research Desk</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div className="p-4 bg-surface-container-high rounded-xl border border-white/5">
-                    <p className="text-label-sm text-on-surface-variant mb-1">Registry No.</p>
-                    <p className="text-headline-md text-on-surface font-mono font-bold">
-                      {BRAND.regNo}
+                    <p className="text-label-sm text-on-surface-variant mb-1">Coverage Universe</p>
+                    <p className="text-headline-md text-on-surface font-bold">
+                      {BRAND.coverage}
                     </p>
                   </div>
                   <div className="p-4 bg-surface-container-high rounded-xl border border-white/5">
-                    <p className="text-label-sm text-on-surface-variant mb-1">Reg. Date</p>
+                    <p className="text-label-sm text-on-surface-variant mb-1">Established</p>
                     <p className="text-headline-md text-on-surface font-bold">
                       {BRAND.regDate}
                     </p>
@@ -156,8 +159,8 @@ export default function DisclosurePage() {
 
                 <div className="mt-8 flex items-center gap-3 text-on-surface-variant">
                   <Bookmark className="w-5 h-5 text-primary shrink-0" />
-                  <p className="text-body-sm italic">
-                    Status verified as of latest internal audit cycle.
+                  <p className="text-body-sm text-on-surface-variant">
+                    {BRAND.name} operates as an independent quantitative equity research desk. All publications, mathematical models, and analytical notes are produced for educational and informational market insights.
                   </p>
                 </div>
               </GlassCard>

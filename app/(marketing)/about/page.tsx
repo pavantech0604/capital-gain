@@ -78,7 +78,7 @@ export default function AboutPage() {
                   <span className="text-[10px] sm:text-label-md uppercase font-bold tracking-wider">Corporate Desk</span>
                 </div>
                 <p className="text-[9px] sm:text-label-sm text-text-muted font-mono leading-none">
-                  Reg ID: {BRAND.regNo}
+                  Desk: Institutional Research
                 </p>
               </div>
             </Reveal>
